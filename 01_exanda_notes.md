@@ -109,15 +109,87 @@ Columns of 𝐗 → variables
 >                ⋮
 >               xnj
 
-
-## In summary
+### In summary
 
 * We have p > 1 measurements or readings over each individual
 * We are interested in studying all the variables jointly (as a group)
 * Objectives:
   * Summarize and synthesize
   * Facilitate understanding of the pheomenon being studied
-     
+
+
+## Types of data
+
+### Qualitative : the variables represent qualities
+1. Binary: only two possible values (true/false), (present/absent)
+2. Nominal: more than two possible values
+
+### Quantitative: the values of the variable have numeric meaning
+1. Discrete: the range of the variable is finite or numerable
+2. Continuous: the range of the variable contains an interval in reals (ℝ)
+     X1 →  ? ...
+
+
+## Review of Statistics
+
+### Definition
+Statistic: "number" that encapsulates a certain characteristic of the data
+
+### General types
+
+#### Central tendency: 
+* Mean (media) AKA average
+* Median (mediana)
+* Mode (moda) 
+
+#### Dispersion: 
+* Variance (varianza) 
+* Standard deviation (desviación estándar)
+* Interquartile range (rango intercuartil)
+
+*What sense does it make to talk about the "average" blood type?*
+
+
+### Quantitative variables - Mean (media)
+
+Data: 𝐗, all quantative
+
+>    xbar_j = (1/2)*Sum[x_ij,{i,1,n}] for j={1,2,...p}   
+```math
+\bar{x}_{j} = \frac{1}{n}\sum_{i=1}^{n}x_{ij} \hspace{12pt} j = 1,...,p
+```
+
+Vector of means:
+```math
+\bar{\textbf{x}} = \begin{pmatrix} \bar{x}_{1}
+ \\                                \bar{x}_{2}
+ \\                                \vdots
+ \\                                \bar{x}_{j}
+\end{pmatrix}
+```
+
+As a matrix:
+TODO......FILL THIS IN
+
+### Quantitative variables - Variance (varianza)
+
+Data: 𝐗, all quantative
+
+#### Variance
+
+>    s_j_squ = (1/(n-1))*Sum[(x_ij-xbar_j)^2, {i,1,n}] for j={1,2,...p}
+```math
+s_{j}^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_{ij}-\bar{x}_{j})^2 \hspace{12pt} j = 1,...,p
+```
+
+
+#### Standard deviation (desviación estándar)
+
+>    s_j = Sqrt[s_j_squ] for j={1,2,...p}
+```math
+s_{j} = \sqrt{s_{j}^2} \hspace{12pt} j = 1,...,p
+```
+
 
 
 
