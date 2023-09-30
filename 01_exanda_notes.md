@@ -1,5 +1,7 @@
 # T1 Introducción
 
+*Skipping some of the introductory material for now*
+
 ## Definition of data
 
 ### Collection of objects (cases, individuals)
@@ -23,13 +25,8 @@ or, simplifying: Ω = {1,..., n}
 subscripts and superscripts; Markdown is clumsy for any kind of 
 mathematical notation, and speed and efficiency are more 
 important right now than beauty or perfection. In the case of 
-the above definition:*
-
-Ω → Mj means Ω → M<sub>j</sub>
-
-*and*
-
-ω_i → x_ij means ω<sub>i</sub> → x<sub>ij</sub>
+the above definition: Ω → Mj means Ω → M<sub>j</sub> and
+ω_i → x_ij means ω<sub>i</sub> → x<sub>ij</sub>*
 
 
 ### Typical example highlighting the nomenclature
@@ -67,6 +64,63 @@ information relating the objects to each other:
 * Objects ordered in time → time series (series temporales)
 * Objects ordered in space → spatial data (datos espaciales)
 * Groups of related objects → mixed models (modelos mixtos)
+
+
+## Data Analysis Tecniques from 10000ft
+
+It is difficult to make an exhaustive classificaion, 
+but the two main types are:
+
+### Unsupervised tecniques (Técnicas no supervisadas)
+* Dimension(ality) reduction (reducción dimensión): PCA (ACP), MDS, ...
+* Clustering: k-means, hierarchical, mixtures, ...
+
+### Supervised tecniques (Técnicas supervisadas)
+* Classification: linear discriminant, k-NN, classification trees, ...
+  neural networks, SVM (support vector machine), logistic reg. ...
+* Regression: linear, non-parametric, GAM, Ridge,
+  neural networks, SVM, ...
+
+
+## Mapping data into matrices
+
+We have **n** individuals for whom **p** variables have been measured
+
+Matrix of data (n x p): 𝐗
+
+>               x11  x12  ...  x1j  ...  x1p
+>               x21  x22  ...  x2j  ...  x2p
+>                ⋮
+>          𝐗 =  xi1  xi2  ...  xij  ...  xip
+>                ⋮
+>                ⋮
+>               xn1  xn2  ...  xnj  ...  xnp
+
+Rows of 𝐗 → individuals
+
+>          𝐱i = (xi1 xi2 ... xip)'
+
+
+Columns of 𝐗 → variables
+
+>               xij
+>               x2j
+>          Xj =  ⋮
+>                ⋮
+>               xnj
+
+
+## In summary
+
+* We have p > 1 measurements or readings over each individual
+* We are interested in studying all the variables jointly (as a group)
+* Objectives:
+  * Summarize and synthesize
+  * Facilitate understanding of the pheomenon being studied
+     
+
+
+
 
 # T2.1 Distancias
 
