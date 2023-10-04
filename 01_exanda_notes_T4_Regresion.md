@@ -2,6 +2,8 @@
 
 2023-09-27 EXANDA
 
+## Simple Linear Regression
+
 Clasifica...
 Ej 1: numericas
 Ej 2: binarias
@@ -78,4 +80,42 @@ out <- lm( y ~ x )
 plot(x,y)
 abline(out)
 `
+
+## General Linear Model (GLM)
+
+Motivación
+
+Construccion de las variables indicadoras
+
+Can only choose two modalidades
+
+R: lm() --> glm()
+
+Example Ej6
+
+Sex=M) edss^ = 0.31 + 1.83(sex=M) + 0.09EdadAp, s^2=0.76
+
+Slanty graph of edss vs Edad
+
+Sex=F)  edss^ = 0.31 + 0 + 0.09EdadAp, s^2=??
+
+Continuing with theory
+
+### Individuos influyentes
+
+Distancia de Cook <--> Mahalanobis
+
+hij <-- hatvalues 
+
+M1 <-- lm()
+
+ei  M1$residuals
+
+yhat M1$fittedvalues
+
+leave the newer exercise
+
+Last homework
+
+Modelos de regression  viernes 8 de octubre is now DOMINGO 10 OCTUBRE
 
