@@ -48,3 +48,34 @@ Factor de confusión -> "Confounding Factor/Variable"
 * If the variables are numeric --> regression
 * If the variables are qualitative --> classification
 
+### How to use the results of simple linear regression to predict
+
+Slanty graph, x_o,  x'     β0 + β1*x
+
+E(Y|X=x) = β0 + β1*x + ϵi  <-- ϵi is the "random noise", hopefully with a normal distribution
+
+Now an excercise: Modelos Lineales #1
+
+OK, got A and B... try C
+
+Link to slide "Interp. Mod. Reg. 
+
+#### Linear regression function in R
+`
+out <- lm( y ~ x )
+`
+Link to slide "Coefficient of determination"
+
+Tabla ANOVA
+
+Now switching to new PDF of slides "Modelo de regresion lineal múltiple"
+
+Ok, now Ej4
+
+#### Making trendlines from LR in R
+`
+out <- lm( y ~ x )
+plot(x,y)
+abline(out)
+`
+
