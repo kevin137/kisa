@@ -189,18 +189,3 @@ s_{j}^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_{ij}-\bar{x}_{j})^2 \hspace{12pt} j = 1,
 ```math
 s_{j} = \sqrt{s_{j}^2} \hspace{12pt} j = 1,...,p
 ```
-
-
-
-
-
-# T2.1 Distancias
-
-# T2.2 Clustering
-
-# T3.1 Reducción dimensionado
-
-# T3.2 Otros paradigmas
-
-# T4 Modelos de Regresión
-
