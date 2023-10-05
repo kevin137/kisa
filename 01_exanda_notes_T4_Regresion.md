@@ -1,5 +1,30 @@
 # T4 Modelos de Regresión
 
+## Introduction
+
+## Simple Linear Regression
+
+## Multiple Linear Regression
+
+## General Linear Model (GLM/MLG)
+
+## Evaluation of Regression Models (GAM)
+
+
+## Introduction
+
+### By values that they take
+* Quantitative
+* Binary
+* Qualitatve
+
+### By what they describe
+* Dependent / response
+* Independent / predictor Binary
+* Control / covariable / confounding factor (variable)
+
+This classification depends more on the objectives of study more than the nature of the variables
+
 2023-09-27 EXANDA
 
 ## Simple Linear Regression
