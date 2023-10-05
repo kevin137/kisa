@@ -88,13 +88,13 @@ We have **n** individuals for whom **p** variables have been measured
 
 Matrix of data (n x p): 𝐗
 
->               x11  x12  ...  x1j  ...  x1p
->               x21  x22  ...  x2j  ...  x2p
+>               x11  x12  …  x1j  …  x1p
+>               x21  x22  …  x2j  …  x2p
 >                ⋮
->          𝐗 =  xi1  xi2  ...  xij  ...  xip
+>          𝐗 =  xi1  xi2  …  xij  …  xip
 >                ⋮
 >                ⋮
->               xn1  xn2  ...  xnj  ...  xnp
+>               xn1  xn2  …  xnj  …  xnp
 
 Rows of 𝐗 → individuals
 
@@ -169,7 +169,13 @@ Vector of means:
 ```
 
 As a matrix:
-TODO......FILL THIS IN
+```math
+\bar{\textbf{x}}^{\prime} = \frac{1}{n}\textbf{1}^{\prime}\textbf{X} 
+\hspace{12pt} where \hspace{12pt} 
+\overbrace{ \textbf{1} = (1,...,1)^{\prime} }^\textit{n}
+```
+TODO add R code with the I vector etc
+
 
 ### Quantitative variables - Variance (varianza)
 
@@ -177,15 +183,62 @@ Data: 𝐗, all quantative
 
 #### Variance
 
->    s_j_squ = (1/(n-1))*Sum[(x_ij-xbar_j)^2, {i,1,n}] for j={1,2,...p}
+>    s_j_sqrd = (1/(n-1))*Sum[(x_ij-xbar_j)^2, {i,1,n}] for j={1,2,...p}
 ```math
 s_{j}^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_{ij}-\bar{x}_{j})^2 \hspace{12pt} j = 1,...,p
 ```
 
-
 #### Standard deviation (desviación estándar)
 
->    s_j = Sqrt[s_j_squ] for j={1,2,...p}
+>    s_j = Sqrt[s_j_sqrd] for j={1,2,...p}
 ```math
 s_{j} = \sqrt{s_{j}^2} \hspace{12pt} j = 1,...,p
 ```
+
+##### Example - https://worldhappiness.report
+
+TODO, fill in
+
+#### Covariance (Covarianza)
+
+We consider two quantative variables Xi and Yj (i,j = 1,...,p),
+the **Covariance** between Xi and Xj is:
+
+>    s_j = Sqrt[s_j_sqrd] for j={1,2,...p}
+```math
+\begin{multline}
+  \begin{split}
+    s_{ij} &= \frac{1}{n-1}\sum_{l=1}^{n}(x_{li}-\bar{x}_{i})(x_{lj}-\bar{x}_{j}) \\
+           &= \frac{1}{n-1}SX_{i}X_{j} \\
+                                       \\
+    Note: s_{ii} = s_{i}^2
+  \end{split} \\
+\end{multline}
+```
+
+##### Interpretation
+
+###### Positive covariance
+TODO put example
+
+###### Negative covariance
+TODO put example
+
+###### Zero covariance
+TODO put example
+
+#### Variance-covariance matrix (Matriz de Varianzas-Covarianzas)
+
+We consider matrix 𝐗
+
+>               x11  x12  …  x1j  …  x1p
+>               x21  x22  …  x2j  …  x2p
+>                ⋮
+>          𝐗 =  xi1  xi2  …  xij  …  xip
+>                ⋮
+>                ⋮
+>  
+
+
+
+
