@@ -85,9 +85,37 @@ If _i_ and _j_ are two objects,
 
 Of these two transformations, the second may be preferable.
 
-### Types of distances and similarities
+## Types of distances and similarities
 
 Over every object Ω, _p_ variables have been measured
 
->          XoXoX xi = (xi1, ..., xip) 0 ∈ R   p, i = 1,…,n
+>          𝐱_i = (x_i1,…,x_ip)' ∈ ℝ^p,  i=1,…,n
 
+* Depending on the nature of the variables under consideration,
+  (continuous, binary, or mixed), different types of distances
+  or similarities should be used.
+* The use of one particular type of distance (similarity) or
+  another depends on the nature of the data, that is, if their
+  origin is a genetic, ecological, industrial study. etc...
+
+An enormous variety of functions for distances and similarities 
+are available.
+
+### Distances for quantative variables
+
+#### Eucliedan distance
+
+#### Minkowsky distance
+
+#### Pearson distance
+ --- Karl Pearson---
+
+#### Mahalanobis distance
+
+### Distances for qualitative variables
+
+#### Sokal-Michener similarity
+
+#### Jaccard similarity
+
+#### Gower similarity
