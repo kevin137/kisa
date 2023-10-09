@@ -89,7 +89,7 @@ Of these two transformations, the second may be preferable.
 
 Over every object Ω, _p_ variables have been measured
 
->          𝐱_i = (x_i1,…,x_ip)' ∈ ℝ^p,  i=1,…,n
+>          𝐱_i = (x_i1, …, x_ip)' ∈ ℝ^p,  i=1,…,n
 
 * Depending on the nature of the variables under consideration,
   (continuous, binary, or mixed), different types of distances
@@ -103,16 +103,84 @@ are available.
 
 ### Distances for quantative variables
 
-#### Eucliedan distance
+#### Eucliedan distance (quantative variables)
 
-#### Minkowsky distance
+With 𝐱 = (x_1, …, x_p)′ and  𝐲 = (y_1, …, y_p)′ being the 
+representations of two objects in Ω
 
-#### Pearson distance
- --- Karl Pearson---
+* The _"Euclidean distance"_ between the two objects is defined as
 
-#### Mahalanobis distance
+  `d_E = (Sum[(x[[i]]-y[[i]])^2, {i,1,p}])^(1/2)`
+  ```math
+    \begin{multline}
+      \begin{split}
+        d_{E}(\textbf{x},\textbf{y}) &= 
+          [(\textbf{x}-\textbf{y})'(\textbf{x}-\textbf{y})]^{\frac{1}{2}} \\
+                                     &= 
+          [\sum_{i=1}^{p}(x_{i}-y_{i})^{2}]^{\frac{1}{2}}
+      \end{split}
+    \end{multline}
+  ```
 
-### Distances for qualitative variables
+#### Minkowsky distance (quantative variables)
+
+With 𝐱 = (x_1, …, x_p)′ and  𝐲 = (y_1, …, y_p)′ being the 
+representations of two objects in Ω
+
+* The _"Minkowsky distance"_ _(q ≥ 1)_ between the two objects
+  is defined as
+
+  `d_M = (Sum[ Abs[(x[[i]]-y[[i]] ]^q, {i,1,p}])^(1/q)`
+  ```math
+    \begin{multline}
+      \begin{split}
+        d_{M}(\textbf{x},\textbf{y}) = 
+          \left(\sum_{i=1}^{p}|x_{i}-y_{i}|^{q}\right)^{\frac{1}{q}}
+      \end{split}
+    \end{multline}
+  ```
+    - When _q_ = 2, this reduces to the euclidean distance
+    - When _q_ = 1, the distance known as the Manhattan distance,
+                    Manhattan metric, city distance, taxicab geometry, etc.
+                    
+#### Pearson distance (quantative variables)
+ 
+_Developed by Karl Pearson_
+
+With 𝐱 = (x_1, …, x_p)′ and  𝐲 = (y_1, …, y_p)′ being the 
+representations of two objects in Ω ,
+
+and with (s_1², …, s_p²) being the variances of the variables
+X_1, …, X_p, respectively 
+
+* The _"(K.) Pearson distance"_ between the two objects
+  is defined as
+
+  `WRRRROONNGG FIXME d_M = (Sum[ Abs[(x[[i]]-y[[i]] ]^q, {i,1,p}])^(1/q)`
+  ```math
+    \begin{multline}
+      \begin{split}
+        d_{P}(\textbf{x},\textbf{y})
+          &= 
+          \left[(\textbf{x}-\textbf{y})'
+            \textbf{S}_0^{-1}
+            (\textbf{x}-\textbf{y})
+          \right]^{\frac{1}{2}} \\
+          &= 
+          \left[\sum_{i=1}^{p}
+            \frac{(x_{i}-y_{i})^{2}}
+                 {s_i^{2}}
+          \right]^{\frac{1}{2}}
+      \end{split}
+    \end{multline}
+  ```
+  Where 𝐒_0 = _diag[s_1², …, s_p²}_
+  
+------ FIXME Cuando s2 i = 1 (i = 1, . . . , p) ´esta se reduce a la distancia eucl´ıdea
+
+#### Mahalanobis distance (quantative variables)
+
+### Similarities for qualitative variables
 
 #### Sokal-Michener similarity
 
