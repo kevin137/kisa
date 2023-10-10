@@ -43,7 +43,7 @@ With the number of objects Ω = n, we arrange a symmetric matrix _n_ x _n_,
 >                d_21    0    …   d_2n 
 >          D =    ⋮                 ⋮
 >                 ⋮                 ⋮
->                d_n1  d_n2   …     0
+>                d_n1  d_n2   …    0
 
 **We call this the "Distance Matrix" over Ω**
 
@@ -89,7 +89,7 @@ Of these two transformations, the second may be preferable.
 
 Over every object Ω, _p_ variables have been measured
 
->          𝐱_i = (x_i1, …, x_ip)' ∈ ℝ^p,  i=1,…,n
+>          𝐱_i = (x_i1, …, x_ip)' ∈ ℝ^p,   i = 1,…,n
 
 * Depending on the nature of the variables under consideration,
   (continuous, binary, or mixed), different types of distances
@@ -152,7 +152,7 @@ With 𝐱 = (x_1, …, x_p)′ and  𝐲 = (y_1, …, y_p)′ being the
 representations of two objects in Ω ,
 
 and with (s_1², …, s_p²) being the variances of the variables
-X_1, …, X_p, respectively 
+X_1, …, X_p, respectively ,
 
 * The _"(K.) Pearson distance"_ between the two objects
   is defined as
@@ -175,11 +175,40 @@ X_1, …, X_p, respectively
       \end{split}
     \end{multline}
   ```
-  Where 𝐒_0 = _diag[s_1², …, s_p²}_
+  where 𝐒_0 = _diag[s_1², …, s_p²}_.
   
------- When _s_i²_ = 1 (i = 1, …, p)  this reduces to the euclidean distance
+When s_i² = 1 (i = 1, …, p)  this reduces to the euclidean distance
 
 #### Mahalanobis distance (quantative variables)
+
+With 𝐱 = (x_1, …, x_p)′ and  𝐲 = (y_1, …, y_p)′ being the 
+representations of two objects in Ω ,
+
+and 𝐒 being the variance-covariance matrix of the variables
+X_1, …, X_p ,
+
+* The _"Mahalanobis distance"_ between the two objects
+  is defined as
+  
+  `d_MH = WRONG DO MATRIX MULTIPLY(Sum[(1/(s[[i]])^2)*( x[[i]]-y[[i]] )^2, {i,1,p}])^(1/2)`
+  ```math
+    \begin{multline}
+      \begin{split}
+        d_{MH}(\textbf{x},\textbf{y})
+          &= 
+          \left[(\textbf{x}-\textbf{y})'
+            \textbf{S}^{-1}
+            (\textbf{x}-\textbf{y})
+          \right]^{\frac{1}{2}} \\
+          &= 
+          \left[\sum_{i=1}^{p}
+            \frac{(x_{i}-y_{i})^{2}}
+                 {s_i^{2}}
+          \right]^{\frac{1}{2}}
+      \end{split}
+    \end{multline}
+  ```
+
 
 ### Similarities for qualitative variables
 
