@@ -7,7 +7,7 @@ We examine Ω = {1, 2, …, n}, a collection of n objects.
 >                   Objects
 >                 ↙         ↘
 >          Matrix   ———————⇀  Matrix of  
->          of data             distances
+>          of data            distances
 >                 ↘         ↙
 >                   Methods
 
@@ -17,8 +17,8 @@ We examine Ω = {1, 2, …, n}, a collection of n objects.
 
 A distance or dissimilarity over a collection Ω is a function _d_:
 
->          d : Ω × Ω  ⟶ R
->              (i,j)  ⟼ d(i,j) = d_ij
+>          d : Ω × Ω  ⟶ ℝ
+>              (i,j)  ↦ d(i,j) = d_ij
 
 that exhibits the following properties:
   1. d(i,j) ≥ 0  ∀i, j ∈ Ω 
@@ -53,8 +53,8 @@ With the number of objects Ω = n, we arrange a symmetric matrix _n_ x _n_,
 
 A similarity over a collection Ω is a function _s_:
 
->          s : Ω × Ω  ⟶ R
->              (i,j)  ⟼ s(i,j) = s_ij
+>          s : Ω × Ω  ⟶ ℝ
+>              (i,j)  ↦ s(i,j) = s_ij
 
 such that:
   1. 0 ≤ s(i,j) ≤ 1  ∀i,j ∈ Ω 
@@ -115,9 +115,10 @@ representations of two objects in Ω
     \begin{multline}
       \begin{split}
         d_{E}(\textbf{x},\textbf{y}) &= 
-          [(\textbf{x}-\textbf{y})'(\textbf{x}-\textbf{y})]^{\frac{1}{2}} \\
+          \left[(\textbf{x}-\textbf{y})'
+            (\textbf{x}-\textbf{y})\right]^{\frac{1}{2}} \\
                                      &= 
-          [\sum_{i=1}^{p}(x_{i}-y_{i})^{2}]^{\frac{1}{2}}
+          \left[\sum_{i=1}^{p}(x_{i}-y_{i})^{2}\right]^{\frac{1}{2}}
       \end{split}
     \end{multline}
   ```
@@ -130,7 +131,7 @@ representations of two objects in Ω
 * The _"Minkowsky distance"_ _(q ≥ 1)_ between the two objects
   is defined as
 
-  `d_M = (Sum[ Abs[(x[[i]]-y[[i]] ]^q, {i,1,p}])^(1/q)`
+  `d_M = (Sum[ (Abs[ x[[i]]-y[[i]] ])^q, {i,1,p}])^(1/q)`
   ```math
     \begin{multline}
       \begin{split}
@@ -156,7 +157,7 @@ X_1, …, X_p, respectively
 * The _"(K.) Pearson distance"_ between the two objects
   is defined as
 
-  `WRRRROONNGG FIXME d_M = (Sum[ Abs[(x[[i]]-y[[i]] ]^q, {i,1,p}])^(1/q)`
+  `d_P = (Sum[(1/(s[[i]])^2)*( x[[i]]-y[[i]] )^2, {i,1,p}])^(1/2)`
   ```math
     \begin{multline}
       \begin{split}
@@ -176,7 +177,7 @@ X_1, …, X_p, respectively
   ```
   Where 𝐒_0 = _diag[s_1², …, s_p²}_
   
------- FIXME Cuando s2 i = 1 (i = 1, . . . , p) ´esta se reduce a la distancia eucl´ıdea
+------ When _s_i²_ = 1 (i = 1, …, p)  this reduces to the euclidean distance
 
 #### Mahalanobis distance (quantative variables)
 
