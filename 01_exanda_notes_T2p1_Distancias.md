@@ -110,7 +110,10 @@ representations of two objects in Ω
 
 * The _"Euclidean distance"_ between the two objects is defined as
 
-  `d_E = (Sum[(x[[i]]-y[[i]])^2, {i,1,p}])^(1/2)`
+  ```wolfram
+  d_E = (Transpose[x-y] . (x-y) )^(1/2)
+  d_E = (Sum[(x[[i]]-y[[i]])^2, {i,1,p}])^(1/2)
+  ```
   ```math
     \begin{multline}
       \begin{split}
@@ -131,7 +134,9 @@ representations of two objects in Ω
 * The _"Minkowsky distance"_ _(q ≥ 1)_ between the two objects
   is defined as
 
-  `d_M = (Sum[ (Abs[ x[[i]]-y[[i]] ])^q, {i,1,p}])^(1/q)`
+  ```wolfram
+  d_M = (Sum[ (Abs[ x[[i]]-y[[i]] ])^q, {i,1,p}])^(1/q)
+  ```
   ```math
     \begin{multline}
       \begin{split}
@@ -156,8 +161,11 @@ X_1, …, X_p, respectively ,
 
 * The _"(K.) Pearson distance"_ between the two objects
   is defined as
-
-  `d_P = (Sum[(1/(s[[i]])^2)*( x[[i]]-y[[i]] )^2, {i,1,p}])^(1/2)`
+  
+  ```wolfram
+  d_P = (Transpose[x-y] . Inverse[DiagonalMatrix[{s1,s2,…,sn}]] . (x-y) )^(1/2)
+  d_P = (Sum[(1/(s[[i]])^2)*( x[[i]]-y[[i]] )^2, {i,1,p}])^(1/2)
+  ```
   ```math
     \begin{multline}
       \begin{split}
@@ -190,7 +198,9 @@ X_1, …, X_p ,
 * The _"Mahalanobis distance"_ between the two objects
   is defined as
   
-  `d_MH = WRONG DO MATRIX MULTIPLY(Sum[(1/(s[[i]])^2)*( x[[i]]-y[[i]] )^2, {i,1,p}])^(1/2)`
+  ```wolfram
+  d_MH = (Transpose[x-y] . Inverse[S] . (x-y) )^(1/2)
+  ```
   ```math
     \begin{multline}
       \begin{split}
@@ -209,6 +219,8 @@ X_1, …, X_p ,
     \end{multline}
   ```
 
+When the variables X_1, …, X_p are uncorrelated 
+(s_ij² = 0  ∀i,j) this reduces to the Pearson distance
 
 ### Similarities for qualitative variables
 
