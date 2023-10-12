@@ -52,9 +52,21 @@ optimization might guide the search, things like projection might guide the sear
 
 first lets take the hypothesis space H to be linear functions ...
 
-H : { f:X→ℝ | f(x) = wᵀx }  
+H : { f:X→ℝ | f(x) = wᵀx }  X:? ℝᵈ
+
 ... there exists a w for which I can do this for every x 
 
+once I do this, I can replace the diea of function, 
+which is a very long list of association of numbers
+with vectors, which is a list of d numbers
 
+This is simple, but this is the foundation of any other model:
+feature maps, kernel, neural networks
+
+We will eventually replace "this" with the square loss function
+
+can start identifying H with ℝᵈ
+
+H ≃ ℝᵈ
 
 
