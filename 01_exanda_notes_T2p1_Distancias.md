@@ -276,7 +276,13 @@ This similarity coefficient must be translated into distance.
    
 #### Jaccard similarity (binary variables)
 
-With 𝐱 = (x₁, …, xₚ)′ and  𝐲 = (y₁, …, yₚ)′ being the representations
+With     \begin{multline}
+      \begin{split}
+        s_(i,j) &= 
+          \frac{\sum_{l=1}^{p_{1}}(1 - \lvert x_{l} - y_{l} \rvert/R_{l}) + a + \alpha}
+            {p_{1} + (p_{2}-d) + p_{3}}
+      \end{split}
+    \end{multline} being the representations
 of two objects in Ω,
 
 * the _Jaccard similarity_ between the two objects is defined as
@@ -295,7 +301,7 @@ This similarity coefficient must be translated into distance.
 1. _d_ij_ = 1 - _s_SM(i,j)_
 2. _d_ij_ = √(1 - _s_SM(i,j)_)
 
-Example: TODO
+##### Example: TODO
 
 #### Gower similarity (mixed variables)
 
@@ -308,19 +314,25 @@ and p₃ qualitative (nominal) variables,
 * The _Gower similarity_ between two objects is defined as
 
   ```wolfram
-  s_J[[i,j]] = a/(a + b + c)
+  s_[[i,j]] = COMPLICATED_TODO
   ```
   ```math
     \begin{multline}
       \begin{split}
         s_(i,j) &= 
-          \frac{\sum_{1}^{p_{1}}(1 - \lvert x_{l} - y_{l} \rvert/R_{l}) + a + \alpha}
+          \frac{\sum_{l=1}^{p_{1}}(1 - \lvert x_{l} - y_{l} \rvert/R_{l}) + a + \alpha}
             {p_{1} + (p_{2}-d) + p_{3}}
       \end{split}
     \end{multline}
   ```
-This similarity coefficient must be translated into distance.
-1. _d_ij_ = 1 - _s_SM(i,j)_
-2. _d_ij_ = √(1 - _s_SM(i,j)_)
+where:
+1.  𝐱 = (x₁, …, xₚ₁)′ and  𝐲 = (y₁, …, yₚ₁)′ represent the observed values
+    of the quantitative variables for this cases _i_ and _j_.
+2. _Rₗ_ is the range of the _l_-th quantitative variable.
+3. _a_ and _d_ are the same coincidence counts for _p₂_ binary varibles
+   commented above.
+4. _α_ is the number of coincidences between cualitative variables
+
+##### Example: TODO
 
 
