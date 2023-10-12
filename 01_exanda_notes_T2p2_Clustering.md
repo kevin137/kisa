@@ -1,5 +1,12 @@
 # T2.2 Clustering
 
+Unsupervised classification, clustering
+
+### Introduction
+
+Let Ω = {1,2, …, _n_} 
+
+
 2023-09-19 EXANDA lecture stars on slide "Métodos particionales"
 
 next slide "Datos iniciales - ejemplo"
