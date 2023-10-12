@@ -47,7 +47,7 @@ A map that given the data is going to return some function
 >          Sₛ ⟼ f^ = f^ₛₘ ≈ fₚ
 >          L(f^) ≈ L(fₚ)
 
-( f^  as in "f hat"; hat means it depends on the data, both the 
+( ^f  as in "f hat"; hat means it depends on the data, both the 
 cardinality and the specific instance, fₚ the exact minimizer
 of these overall possible functions )
 
@@ -69,14 +69,14 @@ some more things_
 space for which the expectation is well-defined )
 
 > Hypothesis space
-Let's look at a space of possible solutions, the ypothesis space
+Let's look at a space of possible solutions, the hypothesis space
 
 in here we will replace ℓ(f) with empirical risk
 
 >          (2)    L^(f) = (1/n)·( ∑i=1:n ℓ(yᵢ,f(xᵢ)) ) 
 
 >                   min   (1/n)·( ∑i=1:n ℓ(yᵢ,f(xᵢ)) ) 
->                 f ∈ H
+>                  f ∈ H
 
 We are in good shape, we have access to everthing, the data 
 the loss function and the space. There is a tension, we want 
@@ -90,30 +90,72 @@ with an empirical approximation. Can also do things like the
 stochastic gradient, where you take the gradient of just one point. 
 
 We will describe the two different approaches, replacing 
-the gradient or replacing the objective function, are both ways
-to explore the possible space of solutions.
+the gradient or replacing the objective function; they are both ways
+to explore the possible space of solutions. Things like optimization 
+and projection might guide the search.
 
-Things like optimization and projection might guide the search.
+To continue we will make some specfic choices
 
-Make some specfic choices
+First let's take the hypothesis space H to be linear functions ...
 
-first lets take the hypothesis space H to be linear functions ...
-
-H : { f:X→ℝ | f(x) = wᵀx }  X:? ℝᵈ
+H : { f:X→ℝ | f(x) = wᵀx }  X: ℝᵈ
 
 ... there exists a w for which I can do this for every x 
 
 once I do this, I can replace the idea of function, 
 which is a very long list of association of numbers,
-with vectors, which is a list of d numbers
+with vectors, which is a list of d numbers. 
+This is simple, but this is the foundation of any other 
+model: feature maps, kernel, neural networks
 
-This is simple, but this is the foundation of any other model:
-feature maps, kernel, neural networks
+We will eventually replace "this" ℓ with the square loss function
 
-We will eventually replace "this" with the square loss function
+Now we can start identifying H with ℝᵈ
+> H ≃ ℝᵈ
 
-can start identifying H with ℝᵈ
+we can talk about things like what is the norm of the function in H:
+> ∥f∥_H = ∥w∥
 
-H ≃ ℝᵈ
+we can define an inner product:
+> ⟨f,f'⟩_H = wᵀw'
+
+(Note: they sometimes use the ⟨⟩ notation in the
+ course to denote infinite objects)
+
+We love this model because instead of thinking
+about the function you can think about the sum
+of vectors and do all the stuff you do for vectors.
+It's clearly a linear space,
+It clearly has an inner product,
+a norm, a distance, everything you want
+You can talk about orthogonality and basically
+every problem we're going to discuss is going to
+become essentially a linear algebra or calculus
+problem.
+
+With this choice in mind the least squares problem becomes:
+
+>              min   (1/n)·( ∑i=1:n (yᵢ - wᵀxᵢ)² ) 
+>             w ∈ ℝᵈ
+
+> We don't introduce the offset, it's very easy to plug it
+> back in and in high dimension, it really doesn't matter 
+> too much.
+
+This problem is very related to linear algegra, so it's 
+very useful to rewrite it in linear algebra notation:
+>          ^Xₙₓᵈ = ( x₁ … xₙ )ᵀ 
+>          ^Yₙₓ₁ = ( y₁ … yₙ )ᵀ 
+
+Now we can rewrite the problem as a quadratic residual:
+>              min   (1/n)·( ∑i=1:n ∥^Xw - ^Y)∥² ) 
+>             w ∈ ℝᵈ
+
+The story until now was a learning-related story, now it
+could go in a couple of directions.
+1. Prove using statistical a probabilistic tools that this is valid
+2. What is this from a computational point of view
+
+For the moment we can forget about the statistical viewpoint.
 
 
