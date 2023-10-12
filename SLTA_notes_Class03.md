@@ -244,6 +244,23 @@ Again we are assuming that the rows are linearly independent,
 so that when we build the ^X·^Xᵀ this matrix is now n by n so we 
 can assume it is invertible and we get this previous equation.
 
+Now some insider baseball in response to a question about
+different kinds of norms...
+What we just did is the simple example because it's the square,
+you take derivative and it's nice, but say in the last 10 years 
+people, I guess from 2000 to 2010, people were obsessed with the 
+L1 norm. You can use entropy here you can use a lot of different 
+things and you can use things that are not norms you can use
+functions that you like. This is the place where, if you like
+the loss function, you have to make a design choice, and and what 
+we did before is a design choice and we're gonna call this a prior 
+and we're gonna see that this actually makes a lot of difference 
+depending what you put here.
+
+The thing that we just did is called the "pseudoinverse".
+
+----- stopping for the night at 34:23
+
 
 
 
