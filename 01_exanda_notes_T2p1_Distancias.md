@@ -231,13 +231,13 @@ representations of two objects _i_ and _j_ in Ω, respectively,
 >          Object j    |          |
 >                    0 |  c    d  | c+d
 >                       __________
->                        a+c  b+d     p
+>                        a+c  b+d    p
 
 In such a way that:
-* The two cases had value 1 simultaneously in _a_ variables,
-* The two cases had value 0 simultaneously in _d_ variables,
-* Case _i_ had value 0 while case _j_ had value 1 in _b_ variables,
-* Case _i_ had value 1 while case _j_ had value 0 in _c_ variables.
+* the two cases had value 1 simultaneously in _a_ variables,
+* the two cases had value 0 simultaneously in _d_ variables,
+* case _i_ had value 0 while case _j_ had value 1 in _b_ variables,
+* case _i_ had value 1 while case _j_ had value 0 in _c_ variables.
 
 We define:
 
@@ -253,8 +253,74 @@ And then,
 Assuming _X_ is the matrix of binary data,
 What does the product _X_·_X'_ calculate? 
 
-#### Sokal-Michener similarity
+#### Sokal-Michener similarity (binary variables)
 
-#### Jaccard similarity
+With 𝐱 = (x₁, …, xₚ)′ and  𝐲 = (y₁, …, yₚ)′ being the representations
+of two objects in Ω,
 
-#### Gower similarity
+* the _Sokal-Michener similarity_ between the two objects is defined as
+
+  ```wolfram
+  s_SM[[i,j]] = (a + d)/p
+  ```
+  ```math
+    \begin{multline}
+      \begin{split}
+        s_{SM}(i,j) &= \frac{a+d}{p}
+      \end{split}
+    \end{multline}
+  ```
+This similarity coefficient must be translated into distance.
+1. _d_ij_ = 1 - _s_SM(i,j)_
+2. _d_ij_ = √(1 - _s_SM(i,j)_)
+   
+#### Jaccard similarity (binary variables)
+
+With 𝐱 = (x₁, …, xₚ)′ and  𝐲 = (y₁, …, yₚ)′ being the representations
+of two objects in Ω,
+
+* the _Jaccard similarity_ between the two objects is defined as
+
+  ```wolfram
+  s_J[[i,j]] = a/(a + b + c)
+  ```
+  ```math
+    \begin{multline}
+      \begin{split}
+        s_{SM}(i,j) &= \frac{a}{a + b + c}
+      \end{split}
+    \end{multline}
+  ```
+This similarity coefficient must be translated into distance.
+1. _d_ij_ = 1 - _s_SM(i,j)_
+2. _d_ij_ = √(1 - _s_SM(i,j)_)
+
+Example: TODO
+
+#### Gower similarity (mixed variables)
+
+Variables X₁ …, Xₚ are said to be mixed if among them are 
+quantitative and qualitative (binary and nominal) variables.
+
+Suppose that we have p₁ quantitative, p₂ binary, 
+and p₃ qualitative (nominal) variables,
+
+* The _Gower similarity_ between two objects is defined as
+
+  ```wolfram
+  s_J[[i,j]] = a/(a + b + c)
+  ```
+  ```math
+    \begin{multline}
+      \begin{split}
+        s_(i,j) &= 
+          \frac{\sum_{1}^{p_{1}}(1 - \lvert x_{l} - y_{l} \rvert/R_{l}) + a + \alpha}
+            {p_{1} + (p_{2}-d) + p_{3}}
+      \end{split}
+    \end{multline}
+  ```
+This similarity coefficient must be translated into distance.
+1. _d_ij_ = 1 - _s_SM(i,j)_
+2. _d_ij_ = √(1 - _s_SM(i,j)_)
+
+
