@@ -171,6 +171,8 @@ Linear systems can be in two situations:
    (here we assuming that the columns are linearly
     independent, or d columns are full rank)
 
+
+
 --------- stopping for the moment at 23:22
     
 2: n < d
