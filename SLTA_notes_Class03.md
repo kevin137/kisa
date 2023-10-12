@@ -44,8 +44,8 @@ approximate it.
 
 A map that given the data is going to return some function
 
->          Sₛ ⟼ f^ = f^ₛₘ ≈ fₚ
->          L(f^) ≈ L(fₚ)
+>          Sₛ ⟼ ^f = f^ₛₘ ≈ fₚ
+>          L(^f) ≈ L(fₚ)
 
 ( ^f  as in "f hat"; hat means it depends on the data, both the 
 cardinality and the specific instance, fₚ the exact minimizer
@@ -160,11 +160,12 @@ For the moment we can forget about the statistical viewpoint...
 
 #### Least squares problem associated with a linear system
 
->          ^Xw = ^y
+>          ^X·w = ^y
 
 Linear systems can be in two situations:
 
-1: n > d  (over-determined linear system of equations) 
+##### 1: n > d  
+   (over-determined linear system of equations) 
    from a machine learning point of view, an 
    under-parameterized model, the number of parameters 
    is smaller than the number of datapoints
@@ -172,8 +173,22 @@ Linear systems can be in two situations:
     independent, or d columns are full rank)
 
 ![n > d](/SLTA_notes_Class03_n_gt_d.png)
-    
-2: n < d
+
+How do we solve this system? We take the gradient of expression 
+from before
+>             (1/n)·( ∥^X·w - ^y)∥² ) 
+
+set it equal to zero, and solve
+
+>             ∇( (1/n)·( ∑i=1:n ∥^X·w - ^y)∥² ) = 0 
+>
+>             2·^Xᵀ(^Xw - ^y) = 0
+>
+>             ^Xᵀ·^X·w = ^Xᵀ·^y
+>
+>             w = (^Xᵀ·^X)⁻¹(^Xᵀ·^y)
+
+##### 2: n < d
 
 ![n < d](/SLTA_notes_Class03_n_lt_d.png)
 
