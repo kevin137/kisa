@@ -145,17 +145,34 @@ With this choice in mind the least squares problem becomes:
 This problem is very related to linear algegra, so it's 
 very useful to rewrite it in linear algebra notation:
 >          ^Xₙₓᵈ = ( x₁ … xₙ )ᵀ 
->          ^Yₙₓ₁ = ( y₁ … yₙ )ᵀ 
+>          ^yₙₓ₁ = ( y₁ … yₙ )ᵀ 
 
 Now we can rewrite the problem as a quadratic residual:
->              min   (1/n)·( ∑i=1:n ∥^Xw - ^Y)∥² ) 
+>              min   (1/n)·( ∑i=1:n ∥^Xw - ^y)∥² ) 
 >             w ∈ ℝᵈ
 
 The story until now was a learning-related story, now it
-could go in a couple of directions.
-1. Prove using statistical a probabilistic tools that this is valid
-2. What is this from a computational point of view
+could go in a couple of directions:
+1. Prove using statistical/probabilistic tools that it is valid
+2. What is this from a computational point of view?
 
-For the moment we can forget about the statistical viewpoint.
+For the moment we can forget about the statistical viewpoint...
+
+#### Least squares problem associated with a linear system
+
+>          ^Xw = ^y
+
+Linear systems can be in two situations:
+
+1: n > d  (over-determined linear system of equations) 
+   from a machine learning point of view, an 
+   under-parameterized model, the number of parameters 
+   is smaller than the number of datapoints
+   (here we assuming that the columns are linearly
+    independent, or d columns are full rank)
+
+--------- stopping for the moment at 23:22
+    
+2: n < d
 
 
