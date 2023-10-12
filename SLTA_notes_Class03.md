@@ -44,7 +44,7 @@ approximate it.
 
 A map that given the data is going to return some function
 
->          Sₛ ⟼ ^f = f^ₛₘ ≈ fₚ
+>          Sₛ ⟼ ^f = ^fₛₘ ≈ fₚ
 >          L(^f) ≈ L(fₚ)
 
 ( ^f  as in "f hat"; hat means it depends on the data, both the 
@@ -123,32 +123,37 @@ we can define an inner product:
  course to denote infinite objects)
 
 We love this model because instead of thinking
-about the function you can think about the sum
+about the functions you can think about
 of vectors and do all the stuff you do for vectors.
 It's clearly a linear space,
-It clearly has an inner product,
-a norm, a distance, everything you want
+it clearly has an inner product,
+a norm, a distance, everything you want.
 You can talk about orthogonality and basically
 every problem we're going to discuss is going to
 become essentially a linear algebra or calculus
 problem.
 
-With this choice in mind the least squares problem becomes:
+With this choice in mind the least squares problem 
+(using square loss function) becomes the following 
+minimization:
 
 >              min   (1/n)·( ∑i=1:n (yᵢ - wᵀxᵢ)² ) 
 >             w ∈ ℝᵈ
 
-> We don't introduce the offset, it's very easy to plug it
-> back in and in high dimension, it really doesn't matter 
-> too much.
+We don't introduce the offset, it's very easy to plug it
+back in and in high dimension, it really doesn't matter 
+too much.
 
 This problem is very related to linear algegra, so it's 
-very useful to rewrite it in linear algebra notation:
->          ^Xₙₓᵈ = ( x₁ … xₙ )ᵀ 
+very useful to rewrite in linear algebra notation:
+
+>          ^Xₙₓᵈ = ( [x rowᵈ]₁ … [x rowᵈ]ₙ )ᵀ 
 >          ^yₙₓ₁ = ( y₁ … yₙ )ᵀ 
 
-Now we can rewrite the problem as a quadratic residual:
->              min   (1/n)·( ∑i=1:n ∥^Xw - ^y)∥² ) 
+Now we can rewrite the problem as the minimziation of 
+this  quadratic residual:
+
+>              min   (1/n)·( ∑i=1:n ∥^Xw - ^Y)∥² ) 
 >             w ∈ ℝᵈ
 
 The story until now was a learning-related story, now it
@@ -157,10 +162,11 @@ could go in a couple of directions:
 2. What is this from a computational point of view?
 
 For the moment we can forget about the statistical viewpoint...
+this is now a linear algebra problem
 
 #### Least squares problem associated with a linear system
 
->          ^X·w = ^y
+>          ^X·w = ^Y
 
 Linear systems can be in two situations:
 
@@ -176,19 +182,73 @@ Linear systems can be in two situations:
 
 How do we solve this system? We take the gradient of expression 
 from before
->             (1/n)·( ∥^X·w - ^y)∥² ) 
+>             (1/n)·( ∥^X·w - ^Y)∥² ) 
 
 set it equal to zero, and solve
 
->             ∇( (1/n)·( ∑i=1:n ∥^X·w - ^y)∥² ) = 0 
+>             ∇( (1/n)·( ∑i=1:n ∥^X·w - ^Y)∥² ) = 0 
 >
->             2·^Xᵀ(^Xw - ^y) = 0
+>             2·^Xᵀ(^Xw - ^Y) = 0
 >
->             ^Xᵀ·^X·w = ^Xᵀ·^y
->
->             w = (^Xᵀ·^X)⁻¹(^Xᵀ·^y)
+>             ^Xᵀ·^X·w = ^Xᵀ·^Y
+>                                note that ^Xᵀ·^X is dxd,
+>                                we can invert it 
+
+###### Solution for w
+
+>             w = (^Xᵀ·^X)⁻¹(^Xᵀ·^Y)
+
+because (the outermost operator, outside of the norm) is just a 
+square I'm just gonna get optimality conditions that are linear 
+and I get a linear system I solve this linear system, and that's
+it.
 
 ##### 2: n < d
 
+Consider now the situation where n is much smaller than d
+
 ![n < d](/SLTA_notes_Class03_n_lt_d.png)
+
+The space of variables is actually larger than the space of data,
+so I can see the space of data as a subset of the larger space ℝᵈ.
+Assuming now n is smaller than d and n is full rank (the rows are 
+linearly independent) 
+
+At this point I don't have the problem that a solution might not
+exist, it does exist. What might happen is that multiple solutions 
+might exist. So now I need to have a selection criteria, and the 
+classical one is: consider among all the possible solutions to the
+system, the one with the minimum norm.
+
+>              min ∥w∥² subject to  ^Xw = ^Y 
+
+**important** this will around multiple times during this course
+
+How do we find the solution in this case? It is more annoying 
+because we can't just take the gradient and set to zero...
+
+Set up Lagrange multipliers, set ^Xw = ^y up as a constraint and
+set the rearity¿? of that equal to zero.
+
+New objective function:
+
+>              ∥w∥² + λ·αᵀ(^Xw - ^Y)
+
+Working through this, we get:
+
+###### Solution for w
+
+>              ^w = ^Xᵀ(^X·^Xᵀ)⁻¹·^Y)
+
+Again we are assuming that the rows are linearly independent,
+so that when we build the ^X·^Xᵀ this matrix is now n by n so we 
+can assume it is invertible and we get this previous equation.
+
+
+
+
+
+
+
+
 
