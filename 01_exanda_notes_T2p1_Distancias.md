@@ -209,11 +209,6 @@ X_1, …, X_p ,
           \left[(\textbf{x}-\textbf{y})'
             \textbf{S}^{-1}
             (\textbf{x}-\textbf{y})
-          \right]^{\frac{1}{2}} \\
-          &= 
-          \left[\sum_{i=1}^{p}
-            \frac{(x_{i}-y_{i})^{2}}
-                 {s_i^{2}}
           \right]^{\frac{1}{2}}
       \end{split}
     \end{multline}
@@ -222,7 +217,41 @@ X_1, …, X_p ,
 When the variables X_1, …, X_p are uncorrelated 
 (s_ij² = 0  ∀i,j) this reduces to the Pearson distance
 
-### Similarities for qualitative variables
+### Similarities for qualitative (binary) variables
+
+With binary variables X₁ …, Xₚ with with values in {0,1},
+
+and with 𝐱 = (x₁, …, xₚ)′ and  𝐲 = (y₁, …, yₚ)′ being the 
+representations of two objects _i_ and _j_ in Ω, respectively,
+
+>                        Object 1
+>                         1    0
+>                       __________
+>                    1 |  a    b  | a+b
+>          Object j    |          |
+>                    0 |  c    d  | c+d
+>                       __________
+>                        a+c  b+d     p
+
+In such a way that:
+* The two cases had value 1 simultaneously in _a_ variables,
+* The two cases had value 0 simultaneously in _d_ variables,
+* Case _i_ had value 0 while case _j_ had value 1 in _b_ variables,
+* Case _i_ had value 1 while case _j_ had value 0 in _c_ variables.
+
+We define:
+
+𝐱ᶜ = (1 - x₁, …, 1 - xₚ)′ and  𝐲ᶜ = (1 - y₁, …, 1 - yₚ)'
+
+And then,
+
+>          a = 𝐱'𝐲
+>          b = 𝐱ᶜ'𝐲ᶜ
+>          c = 𝐱ᶜ'𝐲
+>          d = 𝐱'𝐲ᶜ
+
+Assuming _X_ is the matrix of binary data,
+What does the product _X_·_X'_ calculate? 
 
 #### Sokal-Michener similarity
 
