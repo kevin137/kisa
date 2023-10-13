@@ -483,20 +483,43 @@ This algorithm we have found:
 
 >          ^w^λ = Σ_j:1:r (s_j)/(s_j² + λ)·(u_jᵀ·^Y)·v_j
 
-is called "Regularized Least Squares".
+is called "Regularized Least Squares" 
+(or maybe ridge regression).
 
+_A lot of chat about the selection of λ and the theoretical
+basis of some of these things. Choosing λ is one reason to
+study statistical learning theory._
 
+Summed up: You choose λ by cross-validation
 
+#### Going back to ERM
 
+Trying to get this:
+>              min ∥w∥ of ^Xw - ^Y
 
+We now know how to get this:
+>              ^w† = ^X†·^Y
 
+And this:
+>          ^w^λ = (^Xᵀ·^X + λ·I)⁻¹·^Xᵀ·^Y
 
+Is it empirical risk minimization or not?
 
+Well, it IS this solution for this:
 
+>               min   Σ_i:1:n (yᵢ - wᵀ)² + λ·∥w∥² 
+>              w ∈ ℝᵈ
 
+Observations:
 
+1. We lost the 1/n, the version with n would be:  
 
+>          ^w^λ = (^Xᵀ·^X + n·λ·I)⁻¹·^Xᵀ·^Y
+and
+>               min  (1/n)· Σ_i:1:n (yᵢ - wᵀ)² + λ·∥w∥² 
+>              w ∈ ℝᵈ    
 
+---- stopped at 1:07:18
 
-
-
+and about 2/3 down in the lecture notes at
+https://github.com/sebastiani/6.860-Statistical-Learning-Theory/blob/master/lectures/lecture3_regularized_least_squares/Class03_RLS.pdf
