@@ -401,7 +401,7 @@ problem for SVD..._
 >          ^X·w = Σ_j:1:r s_j·(v_jᵀ·w)·u_j
 >               r ≤ min(n,d)
 > 
->           ( ^w† = ) ^X†^Y = Σ_j:1:r (1/s_j)·(u_jᵀ·^y)·v_j
+>           ( ^w† = ) ^X†^Y = Σ_j:1:r (1/s_j)·(u_jᵀ·^Y)·v_j
 
 >   More points from lecture notes
 >     (but NOT mentioned in the video:
@@ -436,9 +436,57 @@ defined this way:
 
 What if instead of doing this, we fix a suitable λ ?
 
->              ≃ (^X·^Xᵀ + λ·I)⁻¹·^Xᵀ
+>              ≃ (^Xᵀ·^X + λ·I)⁻¹·^Xᵀ
 
------ break at 56:04
+This is now the THIRD definition of ^X† ...
+
+According to Rosasco, its all in the first page of the 
+[wikipedia for pseudo inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)
+and the second page of the 
+[wikipedia for linear system](https://en.wikipedia.org/wiki/System_of_linear_equations) ,
+its not advanced stuff. According to him.
+
+_In the video some notation complaints similar to mine about 
+the similarity of "ᵀ" and "†"_
+
+We will fix this problem with ...
+
+#### Regularization
+
+Consider for λ > 0, 
+
+>          ^w^λ = (^Xᵀ·^X + λ·I)⁻¹·^Xᵀ·^Y
+>               = Σ_j:1:r (s_j)/(s_j² + λ)·(u_jᵀ·^Y)·v_j
+>                                             (from SVD)
+ 
+from the lecture notes: this is called "ridge regression"
+
+The function
+>          F(s) = (s_j)/(s_j² + λ)
+acts as a low-pass filter (low frequencies=princpal components)
+* For s small, F(s) = 1/λ
+* For s big, F(s) = 1/s
+
+_Sanity check from the SVD..._
+
+If λ is very small it's another sanity check, so you know
+it's one way to prove this: if λ is very small you're back 
+to business. If λ is very big you're essentially killing 
+all the eigenvalues. In a smooth way you don't just set them 
+equal to zero but you're effectively killing them.
+
+These is some tension about this being about an approximation,
+we have to live with it, but we said we didn't want something 
+that was going to blow up with small changes to the input space.
+
+This algorithm we have found:
+
+>          ^w^λ = Σ_j:1:r (s_j)/(s_j² + λ)·(u_jᵀ·^Y)·v_j
+
+is called "Regularized Least Squares".
+
+
+
 
 
 
