@@ -238,7 +238,7 @@ Working through this, we get:
 
 ###### Solution for w
 
->              ^w = ^Xᵀ(^X·^Xᵀ)⁻¹·^Y)
+>              ^w = ^Xᵀ(^X·^Xᵀ)⁻¹·^Y
 
 Again we are assuming that the rows are linearly independent,
 so that when we build the ^X·^Xᵀ this matrix is now n by n so we 
@@ -271,7 +271,8 @@ _Moore-Penrose Pseudoinverse_ [wikipedia](https://en.wikipedia.org/wiki/Moore%E2
 > 
 >          ^^X† = ^Xᵀ(^X·^Xᵀ)⁻¹    for n < d (independent rows)
 
-_Note: the notation is getting squirelly, so here's the same thing in LaTeX_
+_Note: the notation is getting squirelly, so here's the same 
+thing in LaTeX for clarity:_
 
   ```math
     \begin{multline}
@@ -284,13 +285,33 @@ _Note: the notation is getting squirelly, so here's the same thing in LaTeX_
       \end{split}
     \end{multline}
   ```
-Two observations:
+Observations:
 1. The computational cost of inverting the matrix to calculated
    the n > d case, is the size of the matrix cubed, plus some
    other stuff, so a total cost of d³ + nd²
 2. For the n > d case, it is n³ + d²n
+3. Starting with ^w = ^Xᵀ(^X·^Xᵀ)⁻¹·^Y, what is the
+   size/dimension of the "(^X·^Xᵀ)⁻¹·^Y" part? It is an
+   n-dimenstional vector, so we will give it a name: C
 
+>          ^w = ^Xᵀ(^X·^Xᵀ)⁻¹·^Y
+>             = ^Xᵀ·C
+>             = ∑_i:1:n xᵢ·cᵢ
 
+The "w" are linear combinations of the input power, we will 
+call this the representor theroem, and it is the way to build 
+non-parametric models through kernels.
+          
+>          ^f†(x) = ^xᵀ·^w†
+>                 = ∑_i:1:n xᵢᵀ·xᵢ·cᵢ 
+
+Can view this as a linear combination or a kind of correlation 
+between the new input and the input points, think of this 
+inner product as some kind of similarity, not really because 
+they're not normalized, but a kind of the angle related to the 
+angle between my vectors. In other words, a weighted combination 
+of the similarites where here the similarity is just the inner
+product.
 
 
 
