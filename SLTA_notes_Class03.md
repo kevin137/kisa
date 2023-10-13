@@ -257,10 +257,38 @@ we did before is a design choice and we're gonna call this a prior
 and we're gonna see that this actually makes a lot of difference 
 depending what you put here.
 
-The thing that we just did is called the "pseudoinverse".
+The thing that we just discovered is called the "pseudoinverse".
 
 ----- stopping for the night at 34:23
 
+#### Pseudoinverse of the least squares problem
+
+_Moore-Penrose Pseudoinverse_ [wikipedia](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)
+
+>          ^w = (^X†)^Y
+> 
+>          ^X† = (^Xᵀ·^X)⁻¹·^Xᵀ    for n > d (independent columns)
+> 
+>          ^^X† = ^Xᵀ(^X·^Xᵀ)⁻¹    for n < d (independent rows)
+
+_Note: the notation is getting squirelly, so here's the same thing in LaTeX_
+
+  ```math
+    \begin{multline}
+      \begin{split}
+        \hat{w} &= \hat{X}^{\dagger}\hat{Y} \\
+        \hat{X}^{\dagger} &= (\hat{X}^{T}\hat{X})^{-1}\hat{X}^{T} 
+        \hspace{12pt} \text{ for n > d, (independent columns) } \\ 
+        \hat{X}^{\dagger} &= \hat{X}^{T}(\hat{X}\hat{X}^{T})^{-1}
+        \hspace{12pt} \text{ for n < d, (independent rows) } \\ 
+      \end{split}
+    \end{multline}
+  ```
+Two observations:
+1. The computational cost of inverting the matrix to calculated
+   the n > d case, is the size of the matrix cubed, plus some
+   other stuff, so a total cost of d³ + nd²
+2. For the n > d case, it is n³ + d²n
 
 
 
