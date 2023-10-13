@@ -315,9 +315,11 @@ Observations:
    size/dimension of the "(^X·^Xᵀ)⁻¹·^Y" part? It is an
    n-dimenstional vector, so we will give it a name: C
 
+#### Representation (representor?) theorem (C)
+
 >          ^w = ^Xᵀ(^X·^Xᵀ)⁻¹·^Y
 >             = ^Xᵀ·C
->             = ∑_i:1:n xᵢ·cᵢ   ∈ NullSpace(^Xᵀ)
+>             = ∑_i:1:n xᵢ·cᵢ   ∈ Range(^Xᵀ)
 
 The "w" are linear combinations of the input power, we will 
 call this the "representor theorem", and it is the way to build 
@@ -332,7 +334,18 @@ inner product as some kind of similarity, not really because
 they're not normalized, but a kind of the angle related to the 
 angle between my vectors. In other words, a weighted combination 
 of the similarites where here the similarity is just the inner
-product.
+product. These are going to become kernels in a little bit.
+
+(Here a question from the audience which was similar to the
+one I had. Why is the order here "xᵀ·^w†" different than the
+order of the original defintion of "f=^X·w". Rosasco's
+answer was "for (because of) the magic property of the inner 
+productto be symmetric". He seems to imply that it is also 
+visually easier on his brain. Someone else asked if it would
+also work if we picked a different norm, and the answer was
+"no".)
+
+One last observation:
 
 What do these solutions actually look like? 
 
@@ -352,15 +365,48 @@ Another point, we chose the only vector(s) orthogonal to the
 null space of the matrix. So, you can think in terms of minimum norm,
 or you can think in terms of your tunnel to this space, it's all the 
 same and again this is all just big recap of linear systems because 
-we're actually going to build quite a bit on this in all sorts of ways
+we're actually going to build quite a bit on this in all sorts of ways.
 
-#### Single Value Decomposition (SVD) of the matrix X
+(explicit expression with abstract albegra in response to a question)
+>          ℝᵈ = NullSpace(^X) ⊕ Range(^X)
 
+#### Single Value Decomposition (SVD) of the matrix ^X
+
+Introducing the SVD of the matrix ^X
 [wikipedia](https://en.wikipedia.org/wiki/Singular_value_decomposition)
 
->          ^X = U·Σ·Vᵀ
+_Great series on SVD, and other things on
+[youtube](https://www.youtube.com/watch?v=nbBvuuNVfco) 
+but it raises the question: SVD always seems to be
+described with the objects in X arranged into column
+vectors, where as we have (I think) our objects
+arranged into rows, with each new sample/data point
+taking up a new row. I wonder how this ISN'T a 
+problem for SVD..._
 
------ taking a break at 48:25
+##### Matrix form
+>          ^X = U·S·Vᵀ
+>                      U : orthonormal basis in ℝⁿ
+>                      S : diagonal that satifies the expression
+>                      V : orthonormal basis
+
+##### Action on a vector form
+>          ^X·w = Σ_j:1:r s_j·(v_jᵀ·w)·u_j
+>               r ≤ min(n,d)
+> 
+>           ^w† = ^X†^Y = Σ_j:1:r (1/s_j)·(u_jᵀ·^y)·v_j
+
+Can we use this for samples corrupted by noise?
+Is this decomposition a good idea? If s_j, is big 
+it could be fine, but if it is small, this is bad news.
+From a statistical point of view, the implication seems
+to be that the moment we move the (sample) data a little
+bit, we get different solutions. If our goal is to 
+generalize to new data, this doesn't sound like a good 
+property.
+
+
+
 
 
 
