@@ -4,6 +4,9 @@ https://www.youtube.com/live/MiypgGqEPpQ?si=IesOs32QuPPaVSZo
 > 
 ### Empirical Risk Minimization (with the Least Squares loss function )
 
+_ERM with the least squares loss function is also called 
+ordinary least squares (OLS) {from the lecture notes}_ 
+
 Known by many names, M estimation in statistics
 
 One of the most studied prinicples to develop algorithms
@@ -249,11 +252,12 @@ set the optimality? of that equal to zero.
 
 >              min ∥w∥² + λ·αᵀ(^Xw - ^Y)
 
-New objective function:
+From this a new objective function:
 
 >              ∥w∥² + αᵀ(^Xw - ^Y)
 
-Working through this, we get:
+Working through this Lagrange stuff more (not done on the video 
+or in the lecture notes), we get:
 
 ###### Solution of w for n < d
 
@@ -311,11 +315,14 @@ Observations:
    the n > d case, is the size of the matrix cubed, plus some
    other stuff, so a total cost of d³ + nd² ,
    for the n > d case, it is n³ + d²n
-3. Starting with ^w = ^Xᵀ(^X·^Xᵀ)⁻¹·^Y, what is the
-   size/dimension of the "(^X·^Xᵀ)⁻¹·^Y" part? It is an
-   n-dimenstional vector, so we will give it a name: C
+3. Starting with ^w = ^Xᵀ·(^X·^Xᵀ)⁻¹·^Y for systens with n < d,
+   what is the  size/dimension of the "(^X·^Xᵀ)⁻¹·^Y" part? It
+   is an n-dimenstional vector, so we will give it a name: "C"
 
-#### Representation (representor?) theorem (C)
+#### Representer theorem (C)
+
+_Note that that starting point seems to imply that the C
+mechanism only works for systems with n>d. TODO: check this!_
 
 >          ^w = ^Xᵀ(^X·^Xᵀ)⁻¹·^Y
 >             = ^Xᵀ·C
@@ -404,6 +411,9 @@ to be that the moment we move the (sample) data a little
 bit, we get different solutions. If our goal is to 
 generalize to new data, this doesn't sound like a good 
 property.
+
+
+
 
 
 
