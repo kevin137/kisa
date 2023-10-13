@@ -2,7 +2,7 @@
 https://www.youtube.com/live/MiypgGqEPpQ?si=IesOs32QuPPaVSZo
 > Prof. Lorenzo Rosasco, University of Genoa / MIT
 > 
-### Empirical Risk Minimization (Least Squares)
+### Empirical Risk Minimization (with the Least Squares loss function )
 
 Known by many names, M estimation in statistics
 
@@ -22,39 +22,45 @@ complicated models.
 >           min    𝔼ₓ,ᵧ[ ℓ(y,f(x)) ]
 >          f: x→y
 >
->          given Sₘ = (xₐ,yᵢ)?ᵐ  maybe from last video?
+>          given Sₙ = (xᵢ,yᵢ)₁ⁿ  ~ Pⁿ
 
-...given a just training set which is a finite set of 
-input-output pairs. 
+With Sₙ being the training set which is a finite set of 
+input-output pairs (which is approximating a perfect 
+probabilistic expression of the population statistics,
+my words...)
 
-(Expectation value in this case is 
+(The expectation value in the expression above is 
 trying to say that prediction for more common events is 
 more important for less common... so its like a weighted sum)
-Assuming i.i.d. "Independent and identically distributed 
-random variables", this can be relaxed in some cases. Assuming 
-that the data all come from the same distribution
-is much more crucial. The distribution they are coming
-from actually defines the objective.
+
+Side remark, this is assuming i.i.d. 
+"Independent and identically distributed random variables". 
+This requirement can be relaxed in some cases. 
+Assuming that the data all come from the same distribution 
+is much more crucial. The distribution they are coming from 
+actually _defines_ the objective.
 (Sidetrack on sequential predection where this is not true)
 
 There is no way to do this exactly, we will have to 
 approximate it.
 
-#### What is an algorithm?
+#### What is an algorithm ?
 
 A map that given the data is going to return some function
 
->          Sₛ ⟼ ^f = ^fₛₘ ≈ fₚ
+>          Sₙ ⟼ ^f = ^f_Sₙ ≈ fₚ
 >          L(^f) ≈ L(fₚ)
 
-( ^f  as in "f hat"; hat means it depends on the data, both the 
-cardinality and the specific instance, fₚ the exact minimizer
+( ^f  as in "f hat"; hat means an empirical quantity, a 
+quantity that _depends on the data_, both the 
+cardinality and the specific instance. fₚ is the 
+theoretical function that would be the exact minimizer
 of these overall possible functions )
 
 We would like a solution whose test error is close to the 
 best possible test error. 
 
-There is no solution, for at least two reasons
+There is no solution, for at least two reasons:
 
 1. There is no expectation, the computation of it extremely
    hard or impossible
@@ -63,19 +69,25 @@ There is no solution, for at least two reasons
 _Gradient descent might be a possible algorithm, if we knew
 some more things_
 
+#### Hypothesis space
+
 >          (1)    𝓗 ⊂ { f | X ⟶ ℝ }
 
 ( we are keeping to the reals for now, in other words, a 
 space for which the expectation is well-defined )
 
-> Hypothesis space
-Let's look at a space of possible solutions, the hypothesis space
+Let's look at the space of possible solutions, the 
+hypothesis space, and now let's look inside for a 
+smaller space
 
 in here we will replace ℓ(f) with empirical risk
 
->          (2)    L^(f) = (1/n)·( ∑i=1:n ℓ(yᵢ,f(xᵢ)) ) 
+>          (2)    ^L(f) = (1/n)·( ∑i:1:n ℓ(yᵢ,f(xᵢ)) ) 
 
->                   min   (1/n)·( ∑i=1:n ℓ(yᵢ,f(xᵢ)) ) 
+so, we are looking for this function f() to minimize the
+loss function
+
+>                   min   (1/n)·( ∑i:1:n ℓ(yᵢ,f(xᵢ)) ) 
 >                  f ∈ H
 
 We are in good shape, we have access to everthing, the data 
@@ -94,7 +106,7 @@ the gradient or replacing the objective function; they are both ways
 to explore the possible space of solutions. Things like optimization 
 and projection might guide the search.
 
-To continue we will make some specfic choices
+To continue we will make some specfic choices, 
 
 First let's take the hypothesis space H to be linear functions ...
 
@@ -108,12 +120,13 @@ with vectors, which is a list of d numbers.
 This is simple, but this is the foundation of any other 
 model: feature maps, kernel, neural networks
 
-We will eventually replace "this" ℓ with the square loss function
+We will eventually replace the ℓ with the square loss function
 
 Now we can start identifying H with ℝᵈ
 > H ≃ ℝᵈ
 
-we can talk about things like what is the norm of the function in H:
+So now we can talk about things like what is the norm 
+of the function in H:
 > ∥f∥_H = ∥w∥
 
 we can define an inner product:
@@ -137,23 +150,23 @@ With this choice in mind the least squares problem
 (using square loss function) becomes the following 
 minimization:
 
->              min   (1/n)·( ∑i=1:n (yᵢ - wᵀxᵢ)² ) 
+>              min   (1/n)·( ∑i:1:n (yᵢ - wᵀxᵢ)² ) 
 >             w ∈ ℝᵈ
 
 We don't introduce the offset, it's very easy to plug it
 back in and in high dimension, it really doesn't matter 
 too much.
 
-This problem is very related to linear algegra, so it's 
+This problem is very related to linear algebra, so it's 
 very useful to rewrite in linear algebra notation:
 
 >          ^Xₙₓᵈ = ( [x rowᵈ]₁ … [x rowᵈ]ₙ )ᵀ 
->          ^yₙₓ₁ = ( y₁ … yₙ )ᵀ 
+>          ^Yₙₓ₁ = ( y₁ … yₙ )ᵀ 
 
 Now we can rewrite the problem as the minimziation of 
-this  quadratic residual:
+this quadratic residual:
 
->              min   (1/n)·( ∑i=1:n ∥^Xw - ^Y)∥² ) 
+>              min   (1/n)·( ∑i:1:n ∥^X·w - ^Y)∥² ) 
 >             w ∈ ℝᵈ
 
 The story until now was a learning-related story, now it
@@ -162,7 +175,7 @@ could go in a couple of directions:
 2. What is this from a computational point of view?
 
 For the moment we can forget about the statistical viewpoint...
-this is now a linear algebra problem
+this is now a linear algebra problem, particularly a...
 
 #### Least squares problem associated with a linear system
 
@@ -170,7 +183,7 @@ this is now a linear algebra problem
 
 Linear systems can be in two situations:
 
-##### 1: n > d  
+##### Linear system situation 1: n > d  
    (over-determined linear system of equations) 
    from a machine learning point of view, an 
    under-parameterized model, the number of parameters 
@@ -179,6 +192,8 @@ Linear systems can be in two situations:
     independent, or d columns are full rank)
 
 ![n > d](/SLTA_notes_Class03_n_gt_d.png)
+>             ∄^w s.t. (such that) ^X·w = ^Y
+
 
 How do we solve this system? We take the gradient of expression 
 from before
@@ -192,7 +207,7 @@ set it equal to zero, and solve
 >
 >             ^Xᵀ·^X·w = ^Xᵀ·^Y
 >                                note that ^Xᵀ·^X is dxd,
->                                we can invert it 
+>                                so we can invert it 
 
 ###### Solution for w
 
@@ -203,11 +218,12 @@ square I'm just gonna get optimality conditions that are linear
 and I get a linear system I solve this linear system, and that's
 it.
 
-##### 2: n < d
+##### Linear system situation 2: n < d
 
 Consider now the situation where n is much smaller than d
 
 ![n < d](/SLTA_notes_Class03_n_lt_d.png)
+>             ∃^w s.t. (such that) ^X·w = ^Y
 
 The space of variables is actually larger than the space of data,
 so I can see the space of data as a subset of the larger space ℝᵈ.
@@ -259,11 +275,10 @@ depending what you put here.
 
 The thing that we just discovered is called the "pseudoinverse".
 
------ stopping for the night at 34:23
-
 #### Pseudoinverse of the least squares problem
 
-_Moore-Penrose Pseudoinverse_ [wikipedia](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)
+_Moore-Penrose Pseudoinverse_ 
+[wikipedia](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)
 
 >          ^w = (^X†)^Y
 > 
@@ -339,7 +354,7 @@ we're actually going to build quite a bit on this in all sorts of ways
 
 >          ^X = U·Σ·Vᵀ
 
------ taking a quite break at 48:25
+----- taking a break at 48:25
 
 
 
