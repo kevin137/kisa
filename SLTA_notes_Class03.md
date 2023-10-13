@@ -209,9 +209,9 @@ set it equal to zero, and solve
 >                                note that ^Xᵀ·^X is dxd,
 >                                so we can invert it 
 
-###### Solution for w
+###### Solution of w for n > d
 
->             w = (^Xᵀ·^X)⁻¹(^Xᵀ·^Y)
+>             w = (^Xᵀ·^X)⁻¹·^Xᵀ·^Y
 
 because (the outermost operator, outside of the norm) is just a 
 square I'm just gonna get optimality conditions that are linear 
@@ -234,25 +234,28 @@ At this point I don't have the problem that a solution might not
 exist, it does exist. What might happen is that multiple solutions 
 might exist. So now I need to have a selection criteria, and the 
 classical one is: consider among all the possible solutions to the
-system, the one with the minimum norm.
+system, the one with the **minimum norm**.
 
->              min ∥w∥² subject to  ^Xw = ^Y 
+>               min   ∥w∥² subject to  ^Xw = ^Y
+>              w ∈ ℝᵈ
 
 **important** this will around multiple times during this course
 
 How do we find the solution in this case? It is more annoying 
 because we can't just take the gradient and set to zero...
 
-Set up Lagrange multipliers, set ^Xw = ^y up as a constraint and
-set the rearity¿? of that equal to zero.
+Set up Lagrange multipliers, set ^X·w = ^y up as a constraint and
+set the optimality? of that equal to zero.
+
+>              min ∥w∥² + λ·αᵀ(^Xw - ^Y)
 
 New objective function:
 
->              ∥w∥² + λ·αᵀ(^Xw - ^Y)
+>              ∥w∥² + αᵀ(^Xw - ^Y)
 
 Working through this, we get:
 
-###### Solution for w
+###### Solution of w for n < d
 
 >              ^w = ^Xᵀ(^X·^Xᵀ)⁻¹·^Y
 
@@ -273,7 +276,7 @@ we did before is a design choice and we're gonna call this a prior
 and we're gonna see that this actually makes a lot of difference 
 depending what you put here.
 
-The thing that we just discovered is called the "pseudoinverse".
+The thing that we just rediscovered is called the "pseudoinverse".
 
 #### Pseudoinverse of the least squares problem
 
@@ -284,7 +287,7 @@ _Moore-Penrose Pseudoinverse_
 > 
 >          ^X† = (^Xᵀ·^X)⁻¹·^Xᵀ    for n > d (independent columns)
 > 
->          ^^X† = ^Xᵀ(^X·^Xᵀ)⁻¹    for n < d (independent rows)
+>          ^X† = ^Xᵀ(^X·^Xᵀ)⁻¹     for n < d (independent rows)
 
 _Note: the notation is getting squirelly, so here's the same 
 thing in LaTeX for clarity:_
@@ -301,10 +304,13 @@ thing in LaTeX for clarity:_
     \end{multline}
   ```
 Observations:
-1. The computational cost of inverting the matrix to calculated
+1. If you have a rectangular matrix, computationally what you
+   do for the pseudoinverse, is check which (^Xᵀ·^X) is the
+   smallest of the two, invert that matrix and solve the problem  
+2. The computational cost of inverting the matrix to calculated
    the n > d case, is the size of the matrix cubed, plus some
-   other stuff, so a total cost of d³ + nd²
-2. For the n > d case, it is n³ + d²n
+   other stuff, so a total cost of d³ + nd² ,
+   for the n > d case, it is n³ + d²n
 3. Starting with ^w = ^Xᵀ(^X·^Xᵀ)⁻¹·^Y, what is the
    size/dimension of the "(^X·^Xᵀ)⁻¹·^Y" part? It is an
    n-dimenstional vector, so we will give it a name: C
@@ -314,10 +320,10 @@ Observations:
 >             = ∑_i:1:n xᵢ·cᵢ   ∈ NullSpace(^Xᵀ)
 
 The "w" are linear combinations of the input power, we will 
-call this the representor theroem, and it is the way to build 
+call this the "representor theorem", and it is the way to build 
 non-parametric models through kernels.
           
->          ^f†(x) = ^xᵀ·^w†
+>          ^f†(x) = xᵀ·^w†
 >                 = ∑_i:1:n xᵢᵀ·xᵢ·cᵢ 
 
 Can view this as a linear combination or a kind of correlation 
