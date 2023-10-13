@@ -333,6 +333,15 @@ or you can think in terms of your tunnel to this space, it's all the
 same and again this is all just big recap of linear systems because 
 we're actually going to build quite a bit on this in all sorts of ways
 
+#### Single Value Decomposition (SVD) of the matrix X
+
+[wikipedia](https://en.wikipedia.org/wiki/Singular_value_decomposition)
+
+>          ^X = U·Σ·Vᵀ
+
+----- taking a quite break at 48:25
+
+
 
 
 
