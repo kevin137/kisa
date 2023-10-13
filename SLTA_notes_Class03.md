@@ -412,6 +412,8 @@ bit, we get different solutions. If our goal is to
 generalize to new data, this doesn't sound like a good 
 property.
 
+---- taking a break at 54:24
+
 
 
 
