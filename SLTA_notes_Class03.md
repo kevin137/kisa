@@ -296,7 +296,7 @@ Observations:
 
 >          ^w = ^Xᵀ(^X·^Xᵀ)⁻¹·^Y
 >             = ^Xᵀ·C
->             = ∑_i:1:n xᵢ·cᵢ
+>             = ∑_i:1:n xᵢ·cᵢ   ∈ NullSpace(^Xᵀ)
 
 The "w" are linear combinations of the input power, we will 
 call this the representor theroem, and it is the way to build 
@@ -312,6 +312,29 @@ they're not normalized, but a kind of the angle related to the
 angle between my vectors. In other words, a weighted combination 
 of the similarites where here the similarity is just the inner
 product.
+
+What do these solutions actually look like? 
+
+>          ^X·w = ^Y
+
+Anything in the null space of X is going to be another solution...
+
+>          ^w† + w₀   w₀ ∈ NullSpace(^X)
+
+_Null Space_ [wikipedia](https://en.wikipedia.org/wiki/Kernel_(linear_algebra))
+
+Remember you can decompose the space in the null space of X 
+and the range of Xᵀ, that's a basic theorem in calculus. 
+This shows that ^w† belongs to the range of Xᵀ† 
+
+Another point, we chose the only vector(s) orthogonal to the 
+null space of the matrix. So, you can think in terms of minimum norm,
+or you can think in terms of your tunnel to this space, it's all the 
+same and again this is all just big recap of linear systems because 
+we're actually going to build quite a bit on this in all sorts of ways
+
+
+
 
 
 
