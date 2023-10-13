@@ -401,7 +401,15 @@ problem for SVD..._
 >          ^X·w = Σ_j:1:r s_j·(v_jᵀ·w)·u_j
 >               r ≤ min(n,d)
 > 
->           ^w† = ^X†^Y = Σ_j:1:r (1/s_j)·(u_jᵀ·^y)·v_j
+>           ( ^w† = ) ^X†^Y = Σ_j:1:r (1/s_j)·(u_jᵀ·^y)·v_j
+
+>   More points from lecture notes
+>     (but NOT mentioned in the video:
+>     * (v_j)_j are the principal components of ^X:
+>         OLS "likes" principal components
+>     * Not all linear functions are the same for OLS!
+>     * The pseudoinverse introduces a bias towards
+>         certain solutions
 
 Can we use this for samples corrupted by noise?
 Is this decomposition a good idea? If s_j, is big 
@@ -412,10 +420,25 @@ bit, we get different solutions. If our goal is to
 generalize to new data, this doesn't sound like a good 
 property.
 
----- taking a break at 54:24
+(Here on the video, the are some doubts about what he 
+actually did to get the SVD)
 
+So how do we fix it? We have an algorithm, we can compute it,
+is just the least squares. We can compute it if n > d, n < d, 
+we can do whatever you want but it might be that if the data 
+are such that the eigenvalues are small, it is not a good idea.
+You have to fix it, how do you fix it? Well there are many 
+ways of doing it. One way is to remember that X† can also be 
+defined this way:
 
+>          ^X† = lim_λ→0₊ (^Xᵀ·^X + λ·I)⁻¹·^Xᵀ
+>          ^X† = lim_λ→0₊ ^Xᵀ·(^X·^Xᵀ + λ·I)⁻¹  (from L.N.)
 
+What if instead of doing this, we fix a suitable λ ?
+
+>              ≃ (^X·^Xᵀ + λ·I)⁻¹·^Xᵀ
+
+----- break at 56:04
 
 
 
