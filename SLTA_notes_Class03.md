@@ -1,7 +1,10 @@
 ## Notes from 9.520/6.860: Statistical Learning Theory and Applications - Class 3
-https://www.youtube.com/live/MiypgGqEPpQ?si=IesOs32QuPPaVSZo
 > Prof. Lorenzo Rosasco, University of Genoa / MIT
-> 
+
+[video](https://www.youtube.com/live/MiypgGqEPpQ?si=IesOs32QuPPaVSZo)
+
+[lecture notes](https://github.com/sebastiani/6.860-Statistical-Learning-Theory/blob/master/lectures/lecture3_regularized_least_squares/Class03_RLS.pdf) (from a slightly later class)
+
 ### Empirical Risk Minimization (with the Least Squares loss function )
 
 _ERM with the least squares loss function is also called 
@@ -507,19 +510,194 @@ Is it empirical risk minimization or not?
 
 Well, it IS this solution for this:
 
->               min   Σ_i:1:n (yᵢ - wᵀ)² + λ·∥w∥² 
+>               min   Σ_i:1:n (yᵢ - wᵀxᵢ)² + λ·∥w∥² 
 >              w ∈ ℝᵈ
+
+So yes... if we are looking for the best possible w, 
+the one that minimizes the square loss: 
+
+>               min   Σ_i:1:n (yᵢ - wᵀxᵢ)² + λ·∥w∥² 
+>              w ∈ ℝᵈ
+
+(or, same thing in matrix form):
+
+>                             ^L_λ(w)
+>                     — — — — —/\—— — — — —
+>               min   ∥^Y - ^X·w∥² + λ·∥w∥² 
+>              w ∈ ℝᵈ
+
+The solution for it is:
+
+>              ^w^λ = (^Xᵀ·^X + λ·I)⁻¹·^Xᵀ·^Y
+
+_A concise derivation of ^L_λ from the lecture notes... 
+(that includes "n", see below). It follows from:_ 
+
+>          Δ^L_λ(w) = -(2/n)·^Xᵀ·(^Y - ^X·w) + 2·λ·w
+>                   = 2·((1/n)·^Xᵀ·^X + λ·I)·w - (2/n)·(^Xᵀ·^Y)
 
 Observations:
 
 1. We lost the 1/n, the version with n would be:  
 
->          ^w^λ = (^Xᵀ·^X + n·λ·I)⁻¹·^Xᵀ·^Y
-and
 >               min  (1/n)· Σ_i:1:n (yᵢ - wᵀ)² + λ·∥w∥² 
 >              w ∈ ℝᵈ    
 
----- stopped at 1:07:18
+_and the equivalent matrix version from the lecture 
+notes:_ 
 
-and about 2/3 down in the lecture notes at
-https://github.com/sebastiani/6.860-Statistical-Learning-Theory/blob/master/lectures/lecture3_regularized_least_squares/Class03_RLS.pdf
+>                               ^L_λ(w)
+>                     ———————————————————————————
+>               min   (1/n)·∥^Y - ^X·w∥² + λ·∥w∥² 
+>              w ∈ ℝᵈ  
+
+_ERM interpretation suggests the rescaling:_
+
+>          ^w^λ = (^Xᵀ·^X + n·λ·I)⁻¹·^Xᵀ·^Y
+
+##### Key equations
+
+These equations are so **important** they get the 
+LaTeX treatment:
+
+```math
+    \begin{multline}
+      \begin{split}
+        \min_{w \in \mathbb{R}} \frac{1}{n} (
+          \sum_{i=1}^{n} (y_{i} - w^{T}x_{i})^2
+          + \lambda \left\| w \right\|^2 ) \\ 
+                                           \\
+        \min_{w \in \mathbb{R}} \frac{1}{n} \left( 
+          \left\| (\hat{Y} - \hat{X} w \right\|^2
+          + \lambda \left\| w \right\|^2 \right) \\
+                                                 \\
+        \hat{w}^{\lambda} = 
+          (\hat{X}^{T}\hat{X} + n\lambda I)^{-1} \hat{X}^{T}\hat{Y}
+      \end{split}
+    \end{multline}
+```
+
+>
+> Questions and comments from the video 
+
+_More comments from the audience... 1/s, butterfly
+effect, etc. Concluding with:
+The whole point of the discussion is the fact that 
+we introduced a family of problems that somewhat 
+trades off precision of approximation in multiple 
+senses, robustness to sampling and noise._ 
+
+_Another set of comments and responses about if this 
+method is generally applicable to other loss functions
+and other ways of calculating the norm. The answer, 
+yes, its a good starting point._
+
+Now a very important question from the audience 
+(for me because I had the same doubt). Can you 
+define this for all cases, n > d and so on. The 
+answer: Yes, because we add theses λ so the 
+expression always invertible.
+
+We did two definitions of X†, one for n > d, 
+one for n < d, here I just shoot this 
+in your face. Ok now you can ask the question does 
+this work in both cases? Yes because that was just in 
+this case it's just different I give you the 
+representation it's just this and you can see what 
+he does on the eigenvalue, so it creates stability 
+that's what we wanted to do so from their point of 
+view is fine. 
+
+Computationally, it is a different story, we will 
+want to find another expression that is somewhat 
+swapping the the order of the expression to make 
+things more efficient, and and the same time derive 
+more complicated estimators.
+
+#### Summary from the lecture
+
+_Basicially just a transcript..._
+
+The tour today was starting from the empirical risk 
+minimization approach to derive a learning algorithm,
+specializing it to linear least squares, and then 
+reminding you that you studied linear algebra.
+
+So you multiply bunch of things here and there, you 
+just recover a bunch of stuff and then it turns out 
+that these tools that you studied can be useful the 
+moment you have to ask other questions like 
+robustness, because in some sense what you would 
+call numerical stability now you can somewhat see as 
+generalization, how much will generalize well to 
+future data.
+
+We did not prove anything but that's kind of 
+intuition we are using here. Then from there we do 
+least squares, then we do the penrose pseudoinverse 
+and then from that we go on to introduce
+this (the final equation for ^w^λ). It is called a 
+bunch of things--it's called Tikhonov regularization,
+penalized M estimation, ridge regression, penalized 
+empirical risk minimization. We introduced it as
+a way to stabilize stuff, but here you see why this
+name might make sense the moment you go back to this 
+(the original least squares minimalized least square
+optimization with the λ norm add-on), because you can 
+view this as a way to penalize the search for an 
+empirical solution by basically saying I don't all 
+solutions the same, I like some solutions better, the 
+ones with a small norm.
+
+You see that the pseudosolution also does tha,t because 
+essentially among all the possible solutions, if you 
+have many, it is looking for the one that are simple 
+in the sense that it has as a small norm.
+
+If you look into the literature you find the word 
+"regularization" both for [ min ∥w∥ such that ^X·w + ^Y ] 
+and [ min  (1/n)· Σ_i:1:n (yᵢ - wᵀ)² + λ·∥w∥²  ], so if 
+you want this is a selection procedure among many 
+possible solutions. You select one.
+
+If you look at signal processing, for example, often 
+times this is called regularization, and these days 
+it is fashionable to call this an implicit bias or 
+a bias in my procedure. If I have many solutions I
+want to go to a precise one--in some precise sense, 
+that can be seen as a bias.
+
+In more standard theory of regularization, you call 
+this the "seed of solution" and you reserve the word 
+"regularization" for fixing the instability problems 
+( the one with saw with SVD). The (1/s) can be 
+unstable, so if it is fix it. This is the more 
+classical way to use the term regularization. 
+
+If you look at today's paper, for example, of neural 
+networks both notions are often used, this is called 
+an implicit bias and implicit regularization, but this 
+is also called regularization. This is a distinction 
+that you're gonna see appearing in a few places... 
+
+From now on what we want to do is instead of linear 
+models, take non-linear models. Instead of the least 
+square, take the lambda loss function. Instead of the 
+square norm, take another norm. Instead of this 
+empirical stuff, use another way to search for 
+solutions, like optimization.
+
+That's kind of you know a spoiler (of what's to come.)
+
+_Question about probabity theory and gaussian noise_
+
+Interesting answer: you can use this for classification, 
+and it works just fine. If you have enough data it 
+works fine.
+
+_More talking about what will happen in the future: 
+kernels, neural nets, logistic, hinge loss, 
+projection, implicit regularization._
+
+
+
