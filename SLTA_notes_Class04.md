@@ -22,7 +22,7 @@ multiple solutions, we might have to select one:
 >              ^w† = argmin  ∥w∥²
 >                    w ∈ ℝᵈ  
 >
->              O =   min   (1/n)·∥ ^X·w - ^Y∥² 
+>              O =   min   (1/n)·∥^X·w - ^Y∥² 
 >                   w ∈ ℝᵈ  
 
 So we can select and calculate one solution.
@@ -36,19 +36,73 @@ _Recap: the dagger † means pseudoinverse, not quite the
 inverse, the pseudoinverse_
 
 >                    ^w† = ^X†·^Y
->                          /    \ 
->              (^Xᵀ·^X)⁻¹·^X     ^Xᵀ·(^X·^Xᵀ)⁻¹
+>                          / \ 
+>             (^Xᵀ·^X)⁻¹·^X   ^Xᵀ·(^X·^Xᵀ)⁻¹
+>              n > d            n < d
 
 _notation shift: as requested from YouTube comments, we 
 will now use use star * instead of ᵀ for transpose. So 
 the expression above becomes:_
 
 >                    ^w† = ^X†·^Y
->                          /    \ 
->              (^X*·^X)⁻¹·^X     ^X*·(^X·^X*)⁻¹
+>                            / \ 
+>            (^X*·^X)⁻¹·^X·^Y   ^X*·(^X·^X*)⁻¹·^Y
+>                  n > d            n < d
+>              {dxd matrix}      {nxn matrix}
 
 _star * seems to be the more general way to show 
 transpose anyway_
+
+And then the discussion continued: let's write these 
+on the basis that I'm going to diagonalize the matrix 
+with SVD, and that we are dividing by, potentially 
+small singular values, and this could be a source of 
+instability, if your Xs and Ys change. And they could, 
+because they are just a training set. Intuitively, 
+this could be a sign of bad generalization. New 
+datapoints could give wildly different solutions. This 
+is probably not what we want.
+
+Notice that is conditioned to the fact that there is a 
+small enough singular value to create this effect. If 
+there matrices have a good condition, a good number 
+ratio between larger and smallest singular value, its 
+fine, but let's assume that you _DO_ have small 
+eigenvalues, then what we did is introduce the 
+"regularized solution":
+
+>          ^w^λ = (^X*·^X + n·λ·I)⁻¹·^X*·^Y
+
+You can get to this many different ways, but the way 
+we did it was to remember that in the limit of λ going 
+to zero, you get back the un-regularized equation for 
+w. However, because you have the λ popping something 
+in on the diagonal, if there is a small singular value, 
+its importance is going to be decreased because of the 
+λ. You are going to make the matrix invertible. 
+
+On the one end, you lose if S is not a good approximation, 
+but for larger λ you get better stability properties.
+
+Now you have to decide how to choose λ. The short answer 
+is cross-validation (the long answer we don't discuess).
+
+The main point is that we introduced a new knob. This is 
+what is called the regularization parameter, and from 
+this point of view there seems to be a connection 
+between the numerical stability, and the statistics and 
+generalization properties of learning. 
+
+From there, if we go back to an optimization formulation, 
+and consider a penalized problem, unconstrained
+
+>              argmin (1/n)·∥^X·w - ^Y∥² + λ∥w∥²
+>              w ∈ ℝᵈ  
+
+It's exactly least squares plus ...norm...
+
+---- pausing at 10:06
+
 
 
 
