@@ -11,19 +11,24 @@ _Goal of today, going beyond linear models. Non-parametric models, feature mappi
 
 ERM (Empirical Risk Minimization) for least squares
 
->               min   (1/n)·∥ ^X·w - ^Y∥² 
+>               min   (1/n)·∥^X·w - ^Y∥² 
 >              w ∈ ℝᵈ  
 
 From this we can just jump into the linear algebra, 
 one way for n > d, another for n < d, but we see that 
-it is a strongly convex solution. If there are 
-multiple solutions, we might have to select one:
+it is a strongly convex solution. 
+
+If there are n < d and there are multiple solutions, 
+we might have to select **one**:
 
 >              ^w† = argmin  ∥w∥²
->                    w ∈ ℝᵈ  
+>                    w ∈ O  
 >
->              O =   min   (1/n)·∥^X·w - ^Y∥² 
->                   w ∈ ℝᵈ  
+>               O =  argmin (1/n)·∥^X·w - ^Y∥² 
+>                    w ∈ ℝᵈ  
+
+_My note, of the solutions O from the second formula, 
+we go on to pick the one with the smallest norm_
 
 So we can select and calculate one solution.
 
@@ -96,7 +101,7 @@ generalization properties of learning.
 From there, if we go back to an optimization formulation, 
 and consider a penalized problem, unconstrained
 
->              argmin (1/n)·∥^X·w - ^Y∥² + λ∥w∥²
+>       ^w^λ = argmin (1/n)·∥^X·w - ^Y∥² + λ·∥w∥²
 >              w ∈ ℝᵈ  
 
 It's exactly least squares plus the norm and λ, and if 
@@ -127,14 +132,95 @@ coefficients towards zero. You don't make think them zero,
 you just somewhat try to shrink them. 
 
 This is also called "shrinkage" in statistics sometimes, 
-push this vector zero. But now you have a tension between 
+push this vector to zero. But you have a tension between 
 pushing it to zero and fitting the data and, again the 
 reason we start from least squares is because we like the 
 fact that we can immediately start to see things from 
 different perspectives and see how they are intimately 
 related. 
 
+The more classical empirical point of view is:
 
+>       ^w^λ = argmin (1/n)·∥^X·w - ^Y∥² + λ·∥w∥²
+>              w ∈ ℝᵈ  
 
+And the linear algebra perspective is:
 
+>          ^w^λ = (^X*·^X + n·λ·I)⁻¹·^X*·^Y
 
+this one is good because numerical stability and 
+statistics "talk to each other". Later on we'll see that 
+the (linear algebra persepective) is one possible way to 
+extend the concept.
+
+A few comments:
+
+1. In all cases you take the limit of λ⟶0, and and you
+   go to the right place. The objective function reduces
+   to:
+
+   >              ^w† = argmin  ∥w∥²
+   >                    w ∈ ℝᵈ 
+
+2. For both situations (n>d, n<d) there is something here.
+
+   If you are in the case **n > d**, there is only one
+   solution, so you know the limit of
+   
+   >       ^w^λ = argmin (1/n)·∥^X·w - ^Y∥² + λ·∥w∥²
+   >              w ∈ ℝᵈ   
+
+   reduces to
+
+   >              argmin (1/n)·∥^X·w - ^Y∥² 
+   >              w ∈ ℝᵈ  
+
+   If you are in the case **n < d**, there are multiple
+   solutions and it doesn't make sense to look at the limit.
+   You can look at the functions, and they will still converge
+   for λ⟶0, so again:
+
+  >       ^w^λ = argmin (1/n)·∥^X·w - ^Y∥² + λ·∥w∥²
+  >              w ∈ ℝᵈ  
+
+   reduces to
+
+   >              argmin (1/n)·∥^X·w - ^Y∥² 
+   >              w ∈ ℝᵈ  
+
+   but if you want to talk about minimizers, where ^w^λ
+   has to go, you have to be careful in the n < d
+   (over-parameterized) regime. You have to select the
+   minimum norm one:
+   
+   >              ^w† = argmin  ∥w∥²
+   >                    w ∈ ℝᵈ  
+
+   3. The "penalized" or "Lagrangian" formulation
+
+   >       ^w^λ = argmin (1/n)·∥^X·w - ^Y∥² + λ·∥w∥²
+   >              w ∈ ℝᵈ    
+
+   is by no means the only one you can consider, another 
+   is the constrained or Ivanov formulation:
+
+   >         min   (1/n)·∥^X·w - ^Y∥²  s.t. ∥w∥² ≤ R
+   >        w ∈ ℝᵈ
+
+   You've constrained your solution to lie in a ball of
+   radius R. It can be proven that these two problems are
+   equivalent, meaning that there are choices of R and λ 
+   that makes the formulations equivalent.
+
+   There is yet another formulation where you try to 
+   minimize the norm subject to a bound on ∥^X·w - ^Y∥²,
+   you say the error has to be smaller than some delta. 
+   This is the Morozov formulation, and yet again it is
+   another equivalent formulation.
+
+   These alternatives are not going to play a role this 
+   course, but they come up in the literature. The one 
+   we are using (Tikhonov) is usually the computationally 
+   simplest one.
+
+   4.  ---- about at 16:00  ....
