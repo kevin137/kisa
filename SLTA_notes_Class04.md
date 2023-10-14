@@ -35,10 +35,11 @@ always be written this way from a matrix point of view:
 _Recap: the dagger † means pseudoinverse, not quite the
 inverse, the pseudoinverse_
 
->                    ^w† = ^X†·^Y
->                          / \ 
->             (^Xᵀ·^X)⁻¹·^X   ^Xᵀ·(^X·^Xᵀ)⁻¹
->              n > d            n < d
+>                     ^w† = ^X†·^Y
+>                             / \ 
+>             (^Xᵀ·^X)⁻¹·^X·^Y   ^Xᵀ·(^X·^Xᵀ)⁻¹·^Y
+>                   n > d            n < d
+>              {dxd matrix}       {nxn matrix}
 
 _notation shift: as requested from YouTube comments, we 
 will now use use star * instead of ᵀ for transpose. So 
@@ -83,7 +84,6 @@ its importance is going to be decreased because of the
 
 On the one end, you lose if S is not a good approximation, 
 but for larger λ you get better stability properties.
-
 Now you have to decide how to choose λ. The short answer 
 is cross-validation (the long answer we don't discuess).
 
@@ -99,12 +99,40 @@ and consider a penalized problem, unconstrained
 >              argmin (1/n)·∥^X·w - ^Y∥² + λ∥w∥²
 >              w ∈ ℝᵈ  
 
-It's exactly least squares plus ...norm...
+It's exactly least squares plus the norm and λ, and if 
+you just take the gradient of this and set it equal, you 
+get back to this:
 
----- pausing at 10:06
+>          ^w^λ = (^X*·^X + n·λ·I)⁻¹·^X*·^Y
 
+... the ^w^λ is the minimizer of the penalized problem.
 
+This a convex continuous function, and it is _strongly_ 
+convex because of λ∥w∥² so this is actually the unique 
+solution of the problem. The two equations are completely 
+equivalent, but now you can take two different points of 
+view. You can view (the penalized formulation) as a 
+constrained or penalized ERM where you say, I don't just 
+look for a solution, I actually want a solution 
+with a small norm. Remember the norm is just the sum 
+of the square weight:
 
+>              ∥w∥ = ∑i:1:n (w*)²
+
+so you can imagine it intuitively as a "budget" on the 
+importance of each relative dimension. If you make
+(the norm portion) very small, in some sense the intuitive 
+idea is that you're going to try to shrink some of the 
+coefficients towards zero. You don't make think them zero, 
+you just somewhat try to shrink them. 
+
+This is also called "shrinkage" in statistics sometimes, 
+push this vector zero. But now you have a tension between 
+pushing it to zero and fitting the data and, again the 
+reason we start from least squares is because we like the 
+fact that we can immediately start to see things from 
+different perspectives and see how they are intimately 
+related. 
 
 
 
