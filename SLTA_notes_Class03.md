@@ -546,8 +546,8 @@ Observations:
 _and the equivalent matrix version from the lecture 
 notes:_ 
 
->                               ^L_λ(w)
->                     ———————————————————————————
+>                              ^L_λ(w)
+>                     — — — — — —/\—— — — — — — —  
 >               min   (1/n)·∥^Y - ^X·w∥² + λ·∥w∥² 
 >              w ∈ ℝᵈ  
 
