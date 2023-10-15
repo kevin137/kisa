@@ -223,4 +223,28 @@ A few comments:
    we are using (Tikhonov) is usually the computationally 
    simplest one.
 
+4. One comment we made last time: in the notes for this
+   course, the (minimization approach with λ·∥w∥²) is
+   called the regularization approach to machine
+   learning, so here regularization enters the picture
+   for the first time
+
+5. One more comment from last time, sometimes the other
+   approach (without λ·∥w∥², and then later choosing
+   which of the multiple solutions you want by which
+   has the smallest norm) is called regularization
+   because you still have the selection criterion, but
+   the (λ·∥w∥² form) is always called regularization.
+   In the classical literature (the form _without_ λ·∥w∥²)
+   is _NOT_ called regularization because the term is
+   reserved for things that are stable for sure, and the
+   (the form without λ·∥w∥²) might not be stable, so they
+   are usually called pseudosolutions instead. It doesn't
+   matter too much, just be aware of the difference.
+
+
+
+
+
+
    4.  ---- about at 16:00  ....
