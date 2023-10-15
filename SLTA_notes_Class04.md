@@ -180,8 +180,8 @@ A few comments:
    You can look at the functions, and they will still converge
    for λ⟶0, so again:
 
-  >       ^w^λ = argmin (1/n)·∥^X·w - ^Y∥² + λ·∥w∥²
-  >              w ∈ ℝᵈ  
+   >       ^w^λ = argmin (1/n)·∥^X·w - ^Y∥² + λ·∥w∥²
+   >              w ∈ ℝᵈ  
 
    reduces to
 
@@ -196,7 +196,7 @@ A few comments:
    >              ^w† = argmin  ∥w∥²
    >                    w ∈ ℝᵈ  
 
-   3. The "penalized" or "Lagrangian" formulation
+3. The "penalized" or "Lagrangian" formulation
 
    >       ^w^λ = argmin (1/n)·∥^X·w - ^Y∥² + λ·∥w∥²
    >              w ∈ ℝᵈ    
@@ -242,9 +242,65 @@ A few comments:
    are usually called pseudosolutions instead. It doesn't
    matter too much, just be aware of the difference.
 
+---- I'm getting bogged down here between 17:00 and 20:00----
 
+For n < d, this order of ^w^λ fits the order of the 
+matrices better:
 
+>          ^w^λ = ^X*·(^X*·^X* + n·λ·I)⁻¹·^Y
 
+computational cost....
 
+TODO, come back here, maybe...  now I'm skipping forward
 
-   4.  ---- about at 16:00  ....
+---- 20:00 ----
+---- 25:44 ----
+
+### Overview of non-linear modifications
+
+>          f(x) =  x*w
+
+How do we go from here to something non-linear?
+
+1. Put non-linearity on the "x"
+   
+>          f(x) = Φ(x)*·w
+> 
+>          f(x) = w*.Φ(x)
+>                          {in the lecture notes}
+
+   Non-linear in the functions, still linear in the 
+   parameterization. These are **kernel methods**.
+
+2. Put non-linearity on "everything"
+
+>          f(x) = Φ(x*·w)
+>
+>          f(x) = Φ(w*·x)
+>                          {in the lecture notes}
+
+   Non-linear in the functions, non-linear in the 
+   parameterization. These are **neural networks**.
+
+In this lecture we will examine, the first, 
+kernel methods. 
+
+Intuitively, it's obvious that going from linear to 
+non-linear is a useful thing, it "gives you a lot juice".
+Just notice that if your number of dimensions is larger 
+than the number of points, you can always interpolate 
+you data, you can always find a solution that gives you 
+zero training error.
+
+This "expansion of dimension" can also be useful in the 
+linear case. If you raise to a high enough dimension 
+(in the input space) you can find a "line" that goes 
+through all the points to have a perfect fit with the 
+training data.
+
+Yet, there are a lot of situations where either the 
+dimensions are not high enough, or your problem is really
+complicated, and you really have to try to capture 
+something going on in your data in a nonlinear way.
+
+---- stopping at 28:26 ----
