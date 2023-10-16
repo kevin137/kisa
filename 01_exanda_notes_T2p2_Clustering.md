@@ -4,7 +4,57 @@ Unsupervised classification, clustering
 
 ### Introduction
 
-Let Ω = {1,2, …, _n_} 
+Let Ω = {1,2, …, _n_} be a set of _n_ objects over which 
+different variables have been measured.
+
+#### Principal objective
+
+* Find the various possible groups or clusters that make
+  up these clusters
+* The objects grouped into the same cluster should be
+  similar among themselves and different to the objects
+  grouped into the other clusters.
+* The clusters are created without previous information
+  and are suggested by the "essence" of the data themselves.
+
+#### Applications
+
+* Microarray data: group and identify genes that act in
+  similar or different way in biological processes
+* Segmentation of images: identify the diferent elements
+  present in an image.
+* etc...
+
+#### What is a cluster?
+
+In some cases, it's not easy to determine.
+
+#### Groups of techniques
+
+En general, clustering techiques are divided into two 
+large groups:
+
+* Hierarchical methods
+
+  Belonging to a cluster at a given level of hierarchy
+  determines the membership to clusters at a higher
+  level
+
+  - Agglomerative
+  - Divisive
+
+  Built starting with a distance matrix
+
+* Partitional methods
+
+  Provide a unique partitioning, one the number of
+  clusters _k_ has been set.
+
+  Built starting with a matrix of data
+
+* Other techniques: Models based on densities,
+  clustering, ...
+
 
 
 2023-09-19 EXANDA lecture stars on slide "Métodos particionales"
