@@ -2,12 +2,12 @@
 
 Unsupervised classification, clustering
 
-### Introduction
+## Introduction
 
 Let Ω = {1,2, …, _n_} be a set of _n_ objects over which 
 different variables have been measured.
 
-#### Principal objective
+## Principal objective
 
 * Find the various possible groups or clusters that make
   up these clusters
@@ -17,7 +17,7 @@ different variables have been measured.
 * The clusters are created without previous information
   and are suggested by the "essence" of the data themselves.
 
-#### Applications
+## Applications
 
 * Microarray data: group and identify genes that act in
   similar or different way in biological processes
@@ -25,11 +25,11 @@ different variables have been measured.
   present in an image.
 * etc...
 
-#### What is a cluster?
+## What is a cluster?
 
 In some cases, it's not easy to determine.
 
-#### Groups of techniques
+### Overall division of techniques
 
 En general, clustering techiques are divided into two 
 large groups:
@@ -55,9 +55,49 @@ large groups:
 * Other techniques: Models based on densities,
   clustering, ...
 
+## Hierarchical methods
+
+### What is a hierarchy?
+
+> Hierarchical methods construct indexed hierarchies.
+
+Suppose that we have _n_ = 5 objects collected in 
+Ω = {1,2,3,4,5}. The following sequence of partitiones 
+establish a hierachy:
+
+>          P₀ = {{1}, {2}, {3}, {4}, {5}}
+>          P₁ = {{1}, {2}, {3}, {4, 5}}
+>          P₂ = {{1}, {2, 3}, {4, 5}}
+>          P₃ = {{1, 2, 3}, {4, 5}}
+>          P₄ = {{1, 2, 3, 4, 5}} = {Ω}
+
+### Agglomerative vs. devisive
+
+Depending on the order we move through the partitions 
+defined before:
+
+* P0 → P4: Agglomerative
+  In each step the new clusters are created by uniting
+  clusters from the previous step
+  - Fast
+
+* P4 → P0: Divisive
+  In each step the new clusters are created by dividing
+  clusters from the previous step 
+  - Based on the global information Parten de la informaci´on global de los datos.
+  - Slow
 
 
-2023-09-19 EXANDA lecture stars on slide "Métodos particionales"
+
+
+
+
+
+
+
+
+
+2023-09-19 EXANDA lecture starts on slide "Métodos particionales"
 
 next slide "Datos iniciales - ejemplo"
 
