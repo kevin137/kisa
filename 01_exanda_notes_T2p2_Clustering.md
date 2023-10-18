@@ -9,8 +9,8 @@ different variables have been measured.
 
 ## Principal objective
 
-* Find the various possible groups or clusters that make
-  up these clusters
+* **Find the various possible groups or clusters that make
+  up these clusters**
 * The objects grouped into the same cluster should be
   similar among themselves and different to the objects
   grouped into the other clusters.
@@ -87,10 +87,70 @@ defined before:
   - Based on the global information Parten de la informaci´on global de los datos.
   - Slow
 
+### Dendrogram
 
+Hierarchical classifications con be represented on a 
+bidirectional diagram called a **dendrogram**
 
+![Dendrogram](https://upload.wikimedia.org/wikipedia/commons/c/ce/Dendrogram2.png)
+<!--- Jakub al13, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, 
+        via Wikimedia Commons -->
 
+### Indexed hierarchy
 
+An indexed hierarchy (𝐂, α) over a collection of objects Ω 
+forms a collection of clusters 𝐂 ⊂ P(Ω) and an index
+α : 𝐂 → ℝ⁺ such that 𝐂 complies with the following axioms:
+
+  1. Intersection axiom: if C,C′ ∈ 𝐂, then 
+     C ∩ C′ ∈ {C, C′, ∅},
+  2. Union axiom: if C ∈ 𝐂, then 
+     C = ⋃{C′ | C′ ∈ 𝐂 and C′ ⊂ C},
+  3. The union of all the clusters contain all the cases:
+     Ω = ⋃{C | C ∈ 𝐂};
+     
+And the index α obeys:
+* α(i) = 0, ∀i ∈ Ω,
+* α(C) ≤ α(C′) if C ⊂ C′.
+
+### Where are the clusters?
+
+What are the partitions that a dendrogram or indexed hierarchy 
+provides us?
+
+⟶ To see them, you must **cut the dendrogram**
+
+### Ultrametric space
+
+We say that (Ω,u) is an ultrametric space if _u_ is a 
+distance funcion defined over ΩxΩ and additionally 
+obeys the _ultrametric property_. Which is:
+
+>          u : Ω × Ω ↦ ℝ
+>              (i,j) ↦ u(i,j) = uᵢⱼ
+
+Such that:
+1. u(i,j) ≥ 0 ∀i, j ∈ Ω
+2. u(i,i) = 0 ∀i ∈ Ω
+3. u(i,j) = u(j,i) ∀i, j ∈ Ω
+4. Ultrametric property
+   u(i,j) ≤ supₖ{u(i,k),u(j,k)}, ∀i, j ∈ Ω
+
+#### All triangles are isosceles?
+
+Property
+> In an ultrametric space, all triangles are isosceles.
+
+#### Ultrametric triangle:
+An isosceles triangle with the base is the smallest side.
+
+Example:
+
+>              0   0.2  0.2   0.35  0.35
+>                   0   0.15  0.35  0.35
+>          U =           0    0.35  0.35
+>                              0    0.1
+>                                    0
 
 
 
