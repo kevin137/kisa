@@ -12,6 +12,9 @@ P(X,Y) ≡ P(X⋂Y) :  "Probability of (both) X and y occurring"
 
 ### Chain Rule
 >          P(X₁,…,Xₙ) = ∏ᵢ₌₁,ₙ P(Xᵢ|X₁,…,Xᵢ₋₁)
+> 
+>          example:
+>            P(X₁,X₂,X₃,X₄) = P(X₁)·P(X₂|X₁)·P(X₃|X₁,X₂)·P(X₄|X₁,X₂,X₃)
 
 ### Bayes' Theorem
 >          P(X|Y) =  P(Y|X)·P(X)
