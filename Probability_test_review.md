@@ -25,3 +25,7 @@ P(X,Y) ≡ P(X⋂Y) :  "Probability of (both) X and y occurring"
 If X and Y are independent:
 >          P(X,Y) = P(X)·P(Y)
 >          P(X|Y) = P(X) 
+
+### Law of total probability
+>          P(X) = ∑ₙ P(X⋂Yₙ) = ∑ₙ P(X,Yₙ) = ∑ₙ P(X|Yₙ)·P(Yₙ)
+
