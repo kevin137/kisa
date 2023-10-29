@@ -568,7 +568,7 @@ LaTeX treatment:
           + \lambda \left\| w \right\|^2 ) \\ 
                                            \\
         \min_{w \in \mathbb{R}} \frac{1}{n} \left( 
-          \left\| (\hat{Y} - \hat{X} w \right\|^2
+          \left\|\hat{Y} - \hat{X} w \right\|^2
           + \lambda \left\| w \right\|^2 \right) \\
                                                  \\
         \hat{w}^{\lambda} = 
