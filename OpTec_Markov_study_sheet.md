@@ -13,18 +13,18 @@ and state i is accessible from state j,
 then it is said that i and j are **communicated**
 (bidirectional, both accessible from each other)
 
-##### equivalence relationship
-The communication relationship is an 
-**equivalence relationship**
-  1. Partition of states set into **separated classes**
-  2. Communicated states belong to the same class
-  (if states are communicated, they are in the same
-   class if not, they are separated. It seems to work a
-   little like non-hierarchical clustering)
+  ##### equivalence relationship
+  The communication relationship is an 
+  **equivalence relationship**
+    1. Partition of states set into **separated classes**
+    2. Communicated states belong to the same class
+    (if states are communicated, they are in the same
+     class if not, they are separated. It seems to work a
+     little like non-hierarchical clustering)
 
-##### irreducible chain
-The chain is **irreducible** if there is only one 
-communicating class.
+  ##### irreducible chain
+  The chain is **irreducible** if there is only one 
+  communicating class.
 
 #### transient state
 A state i is **transient** if there is a state j 
@@ -56,30 +56,30 @@ A state i is **periodic** if its period d(i) > 1
 #### aperiodic state
 A state is **aperiodic** if its period d(i) = 1
 
-##### period (property of a state) 
-A **period** of a state i is the largest integer d 
-satisfying the following property: 
+  ##### period (property of a state) 
+  A **period** of a state i is the largest integer d 
+  satisfying the following property: 
 
-  p⁽ⁿ⁾ᵢᵢ = 0, whenever n is not divisible by d.
+    p⁽ⁿ⁾ᵢᵢ = 0, whenever n is not divisible by d.
 
-The period of i is shown by d(i).
+  The period of i is shown by d(i).
 
-If p⁽ⁿ⁾ᵢᵢ = 0 for all n > 0, then d(i) = ∞.
+  If p⁽ⁿ⁾ᵢᵢ = 0 for all n > 0, then d(i) = ∞.
 
-##### periodicity (property of a class) 
-Periodicity is a class property. If state i has 
-period d and j is communicated with i, then j has 
-period d.
+  ##### periodicity (property of a class) 
+  Periodicity is a class property. If state i has 
+  period d and j is communicated with i, then j has 
+  period d.
 
 #### Ergodic state
 recurrent, aperiodic, and has a finite mean 
 recurrence time 
 (positive recurrent)
 
-##### Ergodic Markov chain
-An _irreducible_, _aperiodic_, _positive recurrent_ 
-_(ergodic)_ Markov chain. 
-**All states are ergodic.**
+  ##### Ergodic Markov chain
+  An _irreducible_, _aperiodic_, _positive recurrent_ 
+  _(ergodic)_ Markov chain. 
+  **All states are ergodic.**
 
 ### Rules for the classification of states
 
