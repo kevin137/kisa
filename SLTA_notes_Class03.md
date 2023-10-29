@@ -172,7 +172,7 @@ very useful to rewrite in linear algebra notation:
 Now we can rewrite the problem as the minimziation of 
 this quadratic residual:
 
->              min   (1/n)·( ∑i:1:n ∥^X·w - ^Y)∥² ) 
+>              min   (1/n)·( ∑i:1:n ∥^X·w - ^Y∥² ) 
 >             w ∈ ℝᵈ
 
 The story until now was a learning-related story, now it
