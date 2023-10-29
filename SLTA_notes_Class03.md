@@ -207,7 +207,7 @@ from before
 
 set it equal to zero, and solve
 
->             ∇( (1/n)·( ∑i=1:n ∥^X·w - ^Y)∥² ) = 0 
+>             ∇( (1/n)·( ∑i:1:n ∥^X·w - ^Y)∥² ) = 0 
 >
 >             2·^Xᵀ(^Xw - ^Y) = 0
 >
